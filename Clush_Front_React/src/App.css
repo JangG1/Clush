@@ -1,0 +1,176 @@
+@font-face {
+  font-family: NanumBarunGothic; /* 폰트 이름 */
+  src: url(/public/fonts/NanumBarunGothic.woff) format(woff); /* 폰트 파일 경로 */
+  font-weight: normal; /* 폰트 두께 (옵션) */
+  font-style: normal; /* 폰트 스타일 (옵션) */
+}
+
+.App {
+  font-weight: 900;
+  font-family: NanumBarunGothic; /* 폰트 이름 */
+}
+
+/* 모든 <Link> 스타일 초기화 */
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상을 그대로 유지 */
+}
+
+a:visited {
+  color: inherit; /* 방문한 링크 색상 유지 */
+}
+
+a:hover {
+  text-decoration: none; /* 마우스 올려도 밑줄 제거 */
+}
+
+a:active {
+  color: inherit; /* 클릭할 때 색상 유지 */
+}
+
+.body1,
+.body3 {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  display: flex;
+}
+.body1_Left,
+.body3_Left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 50%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.body1_Right,
+.body3_Right {
+  width: 35%;
+  height: 60%;
+  margin-left: 2%;
+  margin-right: 1%;
+}
+.body1_Image1,
+.body3_Image1 {
+  width: 100%;
+  height: 90%;
+}
+.body1_Box1,
+.body3_Box1 {
+  padding: 15px 15px 15px 15px;
+  font-size: 80px;
+}
+.body1_Box2,
+.body3_Box2 {
+  padding: 15px 15px 15px 15px;
+  font-size: 70px;
+}
+.body1_Box3,
+.body3_Box3 {
+  padding: 15px 15px 30px 15px;
+  font-size: 20px;
+}
+.body1_Box4,
+.body3_Box4 {
+  border-top: 4px solid #333;
+  border-bottom: 2px solid #333;
+  padding: 20px 20px 20px 20px;
+}
+.body1_Box5,
+.body3_Box5 {
+  width: 100%;
+  height: 20%;
+}
+
+.body3_Box6 {
+  border-top: 4px solid #333;
+  border-bottom: 2px solid #333;
+  padding: 20px 20px 20px 20px;
+}
+
+.body3_Box7 {
+  width: 100%;
+  height: 20%;
+  padding: 10px 10px 10px 10px;
+}
+
+.body3_Box7 > li {
+  padding: 10px 10px 10px 10px;
+}
+
+.body1_Image2,
+.body3_Image2 {
+  padding: 10px 10px 10px 10px;
+  width: 95px;
+  height: 35px;
+  margin: 20px;
+}
+
+.body2,
+.body4 {
+  padding-top: 10%;
+  padding-bottom: 10%;
+  display: flex;
+}
+
+.body2_Left,
+.body4_Left {
+  width: 35%;
+  height: 60%;
+  margin-left: 5%;
+  margin-right: 1%;
+}
+.body2_Right,
+.body4_Right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 50%;
+  margin-left: 2%;
+  margi-nright: 2%;
+}
+.body2_Image1,
+.body4_Image1 {
+  width: 100%;
+  height: 90%;
+}
+.body2_Box1,
+.body4_Box1 {
+  padding: 15px 15px 15px 15px;
+  font-size: 80px;
+}
+.body2_Box2,
+.body4_Box2 {
+  padding: 15px 15px 15px 15px;
+  font-size: 70px;
+}
+.body2_Box3,
+.body4_Box3 {
+  padding: 15px 15px 30px 15px;
+  font-size: 20px;
+}
+.body2_Box4,
+.body4_Box4 {
+  border-top: 4px solid #333;
+  border-bottom: 2px solid #333;
+  padding: 20px 20px 20px 20px;
+}
+.body2_Box5,
+.body4_Box5 {
+  width: 100%;
+  height: 20%;
+  padding: 10px 10px 10px 10px;
+}
+
+.body2_Box5 > li {
+  padding: 10px 10px 10px 10px;
+}
+
+.body4_Image2 {
+  padding: 10px 10px 10px 10px;
+  width: 95px;
+  height: 35px;
+  margin: 20px;
+}
