@@ -1,0 +1,26 @@
+name: Deploy Backend to Oracle VM
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, linux, x64]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # 저장소의 파일을 CI 환경으로 체크아웃.
+
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # GitHub Secrets에서 SSH 개인 키를 사용하여 Oracle VM에 접근.
+
+    - name: Deploy Backend to Oracle VM
+      run: |
+        ssh -v -o StrictHostKeyChecking=no dio@192.168.56.1 'bash -s' << 'EOF'          
+               export SUDO_PASSWORD="${{ secrets.SUDO_PASSWORD }}"
+         /clush/deploy/deploy_back.sh  # 빌드 및 배포 스크립트를 실행.
+        EOF
