@@ -7,7 +7,6 @@ import Calendar from "./components/Calendar";
 import Board from "./components/Board";
 import BoardWrite from "./components/BoardWrite";
 import BoardContent from "./components/BoardContent";
-import About from "./components/About";
 
 function App() {
   const [menuBarHover, setIsHovering] = useState(false);
@@ -45,9 +44,6 @@ function App() {
               <Link style={styles.navBoardBtn} to="/Board">
                 Board
               </Link>
-              <Link style={styles.navBoardBtn} to="/About">
-                About
-              </Link>
             </nav>
           </div>
 
@@ -58,7 +54,6 @@ function App() {
             <Route path="/Board" element={<Board />} />
             <Route path="/BoardWrite" element={<BoardWrite />} />
             <Route path="/BoardContent/:boardNo" element={<BoardContent />} />
-            <Route path="/About" element={<About />} />
           </Routes>
         </Router>
       </header>

@@ -14,8 +14,6 @@ const TodoApp = () => {
 
     const EX_IP = process.env.REACT_APP_EX_IP;
 
-    console.log("외부 IP임 : " + EX_IP);
-
     axios
       .get(EX_IP + `:7777/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
