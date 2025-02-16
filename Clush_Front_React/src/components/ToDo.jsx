@@ -12,8 +12,12 @@ const TodoApp = () => {
   const fetchNews = async () => {
     if (!keyword) return; // 검색어가 비어 있으면 요청을 보내지 않음
 
+    const EX_IP = process.env.REACT_APP_EX_IP;
+
+    console.log("외부 IP임 : " + EX_IP);
+
     axios
-      .get(`/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
+      .get(EX_IP + `:7777/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
         console.log("데이터 도착 : ", response.data); // 받은 데이터를 확인
         setNews(response.data.data.items); // JSON에서 필요한 데이터만 추출하여 상태에 설정

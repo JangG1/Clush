@@ -16,8 +16,10 @@ function BoardContent() {
 
   // 게시물 상세 내용 조회
   useEffect(() => {
+    const EX_IP = process.env.REACT_APP_EX_IP;
+
     axios
-      .get(`/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
+      .get(EX_IP + `:7777/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
         console.log(response.data); // 받은 데이터를 확인
         setBoardDetails(response.data); // 상태에 저장
@@ -28,7 +30,7 @@ function BoardContent() {
 
     // 댓글 조회
     axios
-      .get(`/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
+      .get(EX_IP + `:7777/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
       .then((response) => {
         console.log(response.data);
         setComments(response.data); // 댓글 목록 상태에 저장
@@ -43,14 +45,13 @@ function BoardContent() {
   // 게시물 삭제 함수
   const deleteBoard = () => {
     const pw = process.env.REACT_APP_ADMIN_PASSWORD;
-    const password = prompt("비밀번호를 입력하세요:");
-    console.log(password);
+    const EX_IP = process.env.REACT_APP_EX_IP;
 
     if (boardDetails.nickname == "관리자") {
-      console.log("현재 닉네임 : " + boardDetails.nickname);
+      const password = prompt("비밀번호를 입력하세요:");
       if (pw == password) {
         axios
-          .delete(`/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+          .delete(EX_IP + `:7777/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
           .then((response) => {
             console.log(response.data); // 응답 확인
             alert("게시물이 삭제되었습니다.");
@@ -62,17 +63,30 @@ function BoardContent() {
       } else {
         alert("패스워드가 일치하지 않습니다.");
       }
+    } else if (boardDetails.nickname != "관리자") {
+      axios
+        .delete(EX_IP + `:7777/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+        .then((response) => {
+          console.log(response.data); // 응답 확인
+          alert("게시물이 삭제되었습니다.");
+          window.location.href = "/Board"; // 삭제 후 게시판 페이지로 이동
+        })
+        .catch((error) => {
+          console.error("Error deleting board:", error);
+        });
     }
   };
 
   // 댓글 작성 함수
   const handleAddComment = () => {
+    const EX_IP = process.env.REACT_APP_EX_IP;
+
     if (replyData.trim() === "") {
       alert("댓글을 작성해주세요.");
       return;
     }
     axios
-      .post(`/clushAPI/addComment`, {
+      .post(EX_IP + `:7777/clushAPI/addComment`, {
         boardNo: Number(boardNo),
         nickname: nickname,
         content: replyData,

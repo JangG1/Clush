@@ -8,8 +8,10 @@ function Board() {
 
   // 게시판 모든 내용 조회
   useEffect(() => {
+    const EX_IP = process.env.REACT_APP_EX_IP;
+
     axios
-      .get("/clushAPI/getAllBoard")
+      .get(EX_IP + ":7777/clushAPI/getAllBoard")
       .then((response) => {
         console.log(response.data); // 서버에서 받은 응답 처리
         setBoardData(response.data); // 받은 데이터로 상태 업데이트

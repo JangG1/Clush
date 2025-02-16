@@ -9,8 +9,10 @@ function BoardWrite() {
   const [message3, setMessage3] = useState("");
 
   const handleSendMessage = () => {
+    const EX_IP = process.env.REACT_APP_EX_IP;
+
     axios
-      .post(`/clushAPI/boardSave`, {
+      .post(EX_IP + `:7777/clushAPI/boardSave`, {
         nickname: message1,
         title: message2,
         content: message3,
