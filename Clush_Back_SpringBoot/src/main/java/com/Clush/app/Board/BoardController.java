@@ -17,26 +17,23 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Clush.app.Domain.Board;
 import com.Clush.app.Domain.BoardDTO;
 import com.Clush.app.Repository.BoardRepository;
+import com.Clush.app.Service.BoardService;
 
 import lombok.RequiredArgsConstructor;
 
 import java.io.*;
 
 @RestController
+@RequiredArgsConstructor
 public class BoardController {
 
 	private final BoardRepository boardRepository;
-
-    // ✅ 생성자 주입 방식 (권장)
-    @Autowired
-    public BoardController(BoardRepository boardRepository) {
-        this.boardRepository = boardRepository;
-    }
+	private final BoardService boardService;
 
 	// 모든 게시판 조회
 	@GetMapping("/getAllBoard")
 	public List<Board> getAllBoard() {		
-		return boardRepository.findAll();
+		return boardService.getAllBoards();
 	}
 
 	// 게시판 번호를 통한 조회

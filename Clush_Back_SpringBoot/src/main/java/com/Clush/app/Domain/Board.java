@@ -42,7 +42,7 @@ public class Board {
     private Timestamp board_date;
 
     // 댓글 목록을 Board와 매핑 (양방향 관계 설정)
-    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference  // 무한 참조 방지
     private List<Comment> comments = new ArrayList<>();
 
