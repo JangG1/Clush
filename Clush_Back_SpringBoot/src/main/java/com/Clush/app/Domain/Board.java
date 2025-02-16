@@ -19,7 +19,7 @@ import lombok.Builder;
 @JsonIgnoreProperties(ignoreUnknown = true)  // JSON에 없는 필드는 무시
 @Entity
 @Data
-@NoArgsConstructor
+@NoArgsConstructor  // Lombok이 기본 생성자를 자동 생성
 @AllArgsConstructor
 @Builder
 @DynamicInsert
@@ -46,11 +46,7 @@ public class Board {
     @JsonManagedReference  // 무한 참조 방지
     private List<Comment> comments = new ArrayList<>();
 
-    public void setBoardNo(int boardNo) {
-        this.boardNo = boardNo;
-    }
-
-    // 생성자
+    // 빌더 패턴을 사용한 생성자
     private Board(BoardBuilder builder) {
         this.boardNo = builder.boardNo;
         this.nickname = builder.nickname;
@@ -94,3 +90,4 @@ public class Board {
         return new BoardBuilder();
     }
 }
+
