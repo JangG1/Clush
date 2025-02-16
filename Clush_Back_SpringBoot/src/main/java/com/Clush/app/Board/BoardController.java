@@ -44,13 +44,14 @@ public class BoardController {
  // 모든 게시판 조회
     @GetMapping("/getAllBoard")
     public ResponseEntity<List<Board>> getAllBoard() {
+        log.info("🔵 getAllBoard() 요청 받음");
         try {
             List<Board> boards = boardService.getAllBoards();
-            return ResponseEntity.ok(boards); // 정상 처리 시, List<Board> 반환
+            log.info("✅ getAllBoard() 결과 개수: {}", boards.size());
+            return ResponseEntity.ok(boards);
         } catch (Exception e) {
-            log.error("보드 데이터 로딩 오류: ", e);
+            log.error("❌ 보드 데이터 로딩 오류: ", e);
             
-            // 에러 발생 시, 빈 리스트 또는 기본값을 포함한 Board 리스트 반환
             List<Board> errorList = new ArrayList<>();
             Board errorBoard = new Board();
             errorBoard.setTitle("오류 발생");
@@ -60,6 +61,7 @@ public class BoardController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorList);
         }
     }
+
 
 
 
