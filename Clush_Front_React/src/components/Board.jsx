@@ -24,6 +24,10 @@ function Board() {
   // 날짜 포맷 함수
   const formatDate = (dateString) => {
     const date = new Date(dateString);
+    if (isNaN(date.getTime())) {
+      console.error("Invalid date:", dateString);
+      return "Invalid Date";
+    }
     return date
       .toLocaleDateString("ko-KR", {
         year: "numeric",
