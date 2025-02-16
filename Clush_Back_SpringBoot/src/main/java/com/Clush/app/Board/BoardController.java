@@ -2,6 +2,7 @@ package com.Clush.app.Board;
 
 import java.util.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,17 +23,15 @@ import lombok.RequiredArgsConstructor;
 import java.io.*;
 
 @RestController
-@RequiredArgsConstructor
 public class BoardController {
 
-	// @Autowired 생략 가능
-	// 생성자 주입으로 NullPointerException 방지 가능 (@RequiredArgsConstructor)
 	private final BoardRepository boardRepository;
 
-	@PostMapping("/test")
-	public void test(@RequestBody Board board) {
-		System.out.println(board);
-	}
+    // ✅ 생성자 주입 방식 (권장)
+    @Autowired
+    public BoardController(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
 
 	// 모든 게시판 조회
 	@GetMapping("/getAllBoard")
