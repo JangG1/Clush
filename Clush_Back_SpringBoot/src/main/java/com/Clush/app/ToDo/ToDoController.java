@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
 public class ToDoController {
-
-    private final ToDoService toDoService;
-    private final NaverNewsAPI naverNewsAPI;
+    
+	@Autowired
+    private NaverNewsAPI naverNewsAPI;
     
     // 클라이언트에서 'keyword' 파라미터로 검색어를 받아서 뉴스 정보 제공
     @GetMapping("/news/{keyword}")
