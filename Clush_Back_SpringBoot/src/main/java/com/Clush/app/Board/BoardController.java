@@ -35,10 +35,8 @@ public class BoardController {
 
 	// 모든 게시판 조회
 	@GetMapping("/getAllBoard")
-	public List<Board> getAllBoard() {
-		List<Board>  result = boardRepository.findAll();
-		System.out.println(result);
-		return result;
+	public List<Board> getAllBoard() {		
+		return boardRepository.findAll();
 	}
 
 	// 게시판 번호를 통한 조회
