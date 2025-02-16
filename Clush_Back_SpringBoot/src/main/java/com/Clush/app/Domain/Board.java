@@ -66,7 +66,14 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+    public List<Comment> getComments() {
+        return comments;
+    }
 
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 	// 빌더 클래스
 	public static class BoardBuilder {
 		private int boardNo;
