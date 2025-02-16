@@ -17,7 +17,7 @@ const TodoApp = () => {
     axios
       .get(EX_IP + `:7777/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
-        console.log("데이터 도착 : ", response.data); // 받은 데이터를 확인
+        console.log("데이터 도착 : ", response.data.data.items); // 받은 데이터를 확인
         setNews(response.data.data.items); // JSON에서 필요한 데이터만 추출하여 상태에 설정
       })
       .catch((error) => {

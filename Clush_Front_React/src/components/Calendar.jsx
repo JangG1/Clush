@@ -20,7 +20,7 @@ const MyCalendar = () => {
     const EX_IP = process.env.REACT_APP_EX_IP;
     // 날씨 데이터를 API로부터 가져옴
     axios
-      .get(EX_IP + "/clushAPI/weather")
+      .get(EX_IP + ":7777/clushAPI/weather")
       .then((response) => {
         setWeatherData(response.data); // 날씨 데이터 상태에 저장
       })
@@ -97,7 +97,9 @@ const MyCalendar = () => {
     };
 
     // 해당 날씨가 있으면 변환된 값 반환, 없으면 그대로 반환
-    return weatherTranslations[weather.toLowerCase()] || weather;
+    return weather && weather.toLowerCase
+      ? weatherTranslations[weather.toLowerCase()] || weather
+      : weather;
   };
 
   const getWeatherImage = (weather) => {
