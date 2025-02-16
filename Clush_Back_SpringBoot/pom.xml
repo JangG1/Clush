@@ -23,18 +23,13 @@
     </properties>
 
     <dependencies>
-        <!-- Swagger -->
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-        
+    <dependency>
+    <groupId>org.springframework.plugin</groupId>
+    <artifactId>spring-plugin-core</artifactId>
+       <version>1.2.0.RELEASE</version> <!-- 기존 버전 -->
+</dependency>
+
+
         <!-- JSON Parsing 라이브러리 -->
         <dependency>
             <groupId>org.json</groupId>
@@ -85,7 +80,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+             <version>1.18.24</version>
             <optional>true</optional>
         </dependency>
 
@@ -107,7 +102,7 @@
         </dependency>
     </dependencies>
 
-    <build>
+     <build>
         <plugins>
             <!-- 기존 maven-compiler-plugin 유지 -->
             <plugin>
@@ -142,4 +137,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
