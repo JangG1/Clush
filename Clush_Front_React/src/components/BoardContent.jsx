@@ -19,7 +19,7 @@ function BoardContent() {
     const EX_IP = process.env.REACT_APP_EX_IP;
 
     axios
-      .get(EX_IP + `:7777/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
+      .get(EX_IP + `/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
         console.log(response.data); // 받은 데이터를 확인
         setBoardDetails(response.data); // 상태에 저장
@@ -30,7 +30,7 @@ function BoardContent() {
 
     // 댓글 조회
     axios
-      .get(EX_IP + `:7777/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
+      .get(EX_IP + `/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
       .then((response) => {
         console.log(response.data);
         setComments(response.data); // 댓글 목록 상태에 저장
@@ -51,7 +51,7 @@ function BoardContent() {
       const password = prompt("비밀번호를 입력하세요:");
       if (pw == password) {
         axios
-          .delete(EX_IP + `:7777/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+          .delete(EX_IP + `/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
           .then((response) => {
             console.log(response.data); // 응답 확인
             alert("게시물이 삭제되었습니다.");
@@ -65,7 +65,7 @@ function BoardContent() {
       }
     } else if (boardDetails.nickname != "관리자") {
       axios
-        .delete(EX_IP + `:7777/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+        .delete(EX_IP + `/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
         .then((response) => {
           console.log(response.data); // 응답 확인
           alert("게시물이 삭제되었습니다.");
@@ -86,7 +86,7 @@ function BoardContent() {
       return;
     }
     axios
-      .post(EX_IP + `:7777/clushAPI/addComment`, {
+      .post(EX_IP + `/clushAPI/addComment`, {
         boardNo: Number(boardNo),
         nickname: nickname,
         content: replyData,
