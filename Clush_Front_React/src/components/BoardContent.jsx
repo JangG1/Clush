@@ -16,7 +16,7 @@ function BoardContent() {
 
   // 게시물 상세 내용 조회
   useEffect(() => {
-    const EX_IP = process.env.REACT_APP_EX_IP;
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
     axios
       .get(EX_IP + `/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
@@ -45,7 +45,7 @@ function BoardContent() {
   // 게시물 삭제 함수
   const deleteBoard = () => {
     const pw = process.env.REACT_APP_ADMIN_PASSWORD;
-    const EX_IP = process.env.REACT_APP_EX_IP;
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
     if (boardDetails.nickname == "관리자") {
       const password = prompt("비밀번호를 입력하세요:");
@@ -79,7 +79,7 @@ function BoardContent() {
 
   // 댓글 작성 함수
   const handleAddComment = () => {
-    const EX_IP = process.env.REACT_APP_EX_IP;
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
     if (replyData.trim() === "") {
       alert("댓글을 작성해주세요.");

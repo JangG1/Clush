@@ -8,7 +8,7 @@ function Board() {
 
   // 게시판 모든 내용 조회
   useEffect(() => {
-    const EX_IP = process.env.REACT_APP_EX_IP;
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
     axios
       .get(EX_IP + "/clushAPI/getAllBoard")
