@@ -12,7 +12,7 @@ const TodoApp = () => {
   const fetchNews = async () => {
     if (!keyword) return; // 검색어가 비어 있으면 요청을 보내지 않음
 
-    const EX_IP = process.env.REACT_APP_EX_IP;
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
     axios
       .get(EX_IP + `/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
