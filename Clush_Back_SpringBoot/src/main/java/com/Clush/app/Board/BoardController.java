@@ -43,7 +43,7 @@ public class BoardController {
 	
 	// 모든 게시판 조회
  // 모든 게시판 조회
-    @GetMapping("/clushAPI/getAllBoard")
+    @GetMapping("/getAllBoard")
     public ResponseEntity<List<Board>> getAllBoard() {
         try {
             List<Board> boards = boardService.getAllBoards();
