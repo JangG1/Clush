@@ -11,11 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 public class BoardService {
 
     private final BoardRepository boardRepository;
-
+    
+    public BoardService(BoardRepository boardRepository) {
+        this.boardRepository = boardRepository;
+    }
+    
     @Transactional(readOnly = true)
     public List<Board> getAllBoards() {
         return boardRepository.findAll();
