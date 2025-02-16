@@ -1,5 +1,6 @@
 package com.Clush.app.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,12 +28,17 @@ public class BoardService {
     @Transactional(readOnly = true)
     public List<Board> getAllBoards() {
         try {
-            return boardRepository.findAll();
+            List<Board> boards = boardRepository.findAll();
+            for (Board board : boards) {
+                if (board.getComments() == null) {
+                    board.setComments(new ArrayList<>()); // Null 방지
+                }
+            }
+            return boards;
         } catch (Exception e) {
             log.error("데이터 조회 중 오류 발생", e);
-            return Collections.emptyList(); // 예외 발생 시 빈 리스트 반환
+            return Collections.emptyList();
         }
     }
-
 }
 
