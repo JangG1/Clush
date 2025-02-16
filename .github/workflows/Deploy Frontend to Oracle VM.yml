@@ -22,11 +22,6 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Setting .env
-      run: |
-        echo "REACT_APP_EX_IP=${{ secrets.REACT_APP_EX_IP }}" >> .env
-        cat .env
-
     - name: Deploy Frontend to Oracle VM
       run: |
         ssh -v -o StrictHostKeyChecking=no dio@192.168.56.1 'bash -s' << 'EOF'          
