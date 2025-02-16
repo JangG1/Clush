@@ -24,12 +24,19 @@ import lombok.RequiredArgsConstructor;
 import java.io.*;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class BoardController {
-
+	
+	@Autowired
 	private final BoardRepository boardRepository;
+	@Autowired
 	private final BoardService boardService;
 
+    public BoardController(BoardRepository boardRepository, BoardService boardService) {
+        this.boardRepository = boardRepository;
+        this.boardService = boardService;
+    }
+	
 	// 모든 게시판 조회
 	@GetMapping("/getAllBoard")
 	public List<Board> getAllBoard() {		
