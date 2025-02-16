@@ -22,7 +22,6 @@ import lombok.Builder;
 @Data
 @NoArgsConstructor(access = AccessLevel.PUBLIC)  // Lombok이 기본 생성자를 자동 생성
 @AllArgsConstructor
-//@Builder
 @DynamicInsert
 public class Board {
     @Id
@@ -91,5 +90,6 @@ public class Board {
         return new BoardBuilder();
     }
 }
+
 
 
