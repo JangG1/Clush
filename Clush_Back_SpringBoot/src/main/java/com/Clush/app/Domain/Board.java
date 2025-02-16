@@ -67,6 +67,10 @@ public class Board {
 		this.content = content;
 	}
 	
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
     public List<Comment> getComments() {
         return comments;
     }
@@ -81,6 +85,14 @@ public class Board {
 
     public String getContent() {
         return content;
+    }
+    
+    public int getBoardNo() {
+        return boardNo;
+    }
+
+    public Timestamp getBoard_date() {
+        return board_date;
     }
     
     public void setComments(List<Comment> comments) {
