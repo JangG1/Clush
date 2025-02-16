@@ -17,6 +17,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonIgnoreProperties(ignoreUnknown = true)  // JSON에 없는 필드는 무시
 @Entity
 @Data
