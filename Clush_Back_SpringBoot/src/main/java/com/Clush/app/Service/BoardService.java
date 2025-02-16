@@ -17,7 +17,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     
     // 클래스 레벨에서 Logger 초기화
-    private static final Logger log = LoggerFactory.getLogger(BoardController.class);
+    private static final Logger log = LoggerFactory.getLogger(BoardService.class);
     
     public BoardService(BoardRepository boardRepository) {
         this.boardRepository = boardRepository;
