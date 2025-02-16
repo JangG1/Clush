@@ -1,4 +1,4 @@
-package com.Clush.app.swagger;
+package com.Clush.app.springDoc;
 
 import org.springdoc.core.GroupedOpenApi;
 import org.springframework.context.annotation.Bean;
