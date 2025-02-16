@@ -26,9 +26,6 @@ jobs:
       run: |
         npm install
 
-    - name: Clear cache
-      run: npm run clean-cache
-
     - name: Deploy Frontend to Oracle VM
       run: |
         ssh -v -o StrictHostKeyChecking=no dio@192.168.56.1 'bash -s' << 'EOF'
