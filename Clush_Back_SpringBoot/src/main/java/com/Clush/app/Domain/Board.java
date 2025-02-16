@@ -22,7 +22,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@JsonIgnoreProperties(ignoreUnknown = true) // JSON에 없는 필드는 무시
+//@JsonIgnoreProperties(ignoreUnknown = true) // JSON에 없는 필드는 무시
 @Entity
 @Data
 //@NoArgsConstructor(access = AccessLevel.PUBLIC)  // Lombok이 기본 생성자를 자동 생성
@@ -47,7 +47,7 @@ public class Board {
 	private Timestamp board_date;
 
 	// 댓글 목록을 Board와 매핑 (양방향 관계 설정)
-	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JsonManagedReference // 무한 참조 방지
 	private List<Comment> comments = new ArrayList<>();
 

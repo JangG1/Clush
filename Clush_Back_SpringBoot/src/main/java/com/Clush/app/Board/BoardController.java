@@ -1,6 +1,7 @@
 package com.Clush.app.Board;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -43,27 +44,10 @@ public class BoardController {
 	
  // 모든 게시판 조회
     @GetMapping("/getAllBoard")
-    public ResponseEntity<List<Board>> getAllBoard() {
-        log.info("🔵 getAllBoard() 요청 받음");
-        try {
-            List<Board> boards = boardService.getAllBoards();
-            log.info("✅ getAllBoard() 결과 개수: {}", boards.size());
-            return ResponseEntity.ok(boards);
-        } catch (Exception e) {
-            log.error("❌ 보드 데이터 로딩 오류: ", e);
-            
-            List<Board> errorList = new ArrayList<>();
-            Board errorBoard = new Board();
-            errorBoard.setTitle("오류 발생");
-            errorBoard.setContent(e.getMessage());
-            errorList.add(errorBoard);
-            
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorList);
-        }
+    public List<BoardDTO> getAllBoard() {
+        List<Board> boards = boardRepository.findAll();
+        return boards.stream().map(BoardDTO::new).collect(Collectors.toList());
     }
-
-
-
 
 	// 게시판 번호를 통한 조회
 	@GetMapping("/getBoard/{boardNo}")
