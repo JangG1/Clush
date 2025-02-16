@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,7 @@ import lombok.Builder;
 @JsonIgnoreProperties(ignoreUnknown = true)  // JSON에 없는 필드는 무시
 @Entity
 @Data
-@NoArgsConstructor  // Lombok이 기본 생성자를 자동 생성
+@NoArgsConstructor(access = AccessLevel.PUBLIC)  // Lombok이 기본 생성자를 자동 생성
 @AllArgsConstructor
 //@Builder
 @DynamicInsert
