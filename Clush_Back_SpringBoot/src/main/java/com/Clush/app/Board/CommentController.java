@@ -17,13 +17,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CommentController {
 
    private final  BoardRepository boardRepository;
-
     private final CommentRepository commentRepository;
 	
+    @Autowired
+    public CommentController(BoardRepository boardRepository, CommentRepository commentRepository) {
+        this.boardRepository = boardRepository;
+        this.commentRepository = commentRepository;
+    }
+    
 	@GetMapping("/getComments/{boardNo}")
 	public ResponseEntity<List<Comment>> getComments(@PathVariable int boardNo) {
         List<Comment> comments = commentRepository.findByBoardBoardNo(boardNo);
