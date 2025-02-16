@@ -24,7 +24,7 @@ jobs:
 
     - name: Setting .env
       run: |
-        echo "REACT_APP_GOOGLE_CLIENTID=${{ secrets.REACT_APP_EX_IP }}" >> .env
+        echo "REACT_APP_EX_IP=${{ secrets.REACT_APP_EX_IP }}" >> .env
         cat .env
 
     - name: Deploy Frontend to Oracle VM
