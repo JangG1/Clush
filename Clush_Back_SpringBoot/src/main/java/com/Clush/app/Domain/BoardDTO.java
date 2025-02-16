@@ -1,28 +1,43 @@
 package com.Clush.app.Domain;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class BoardDTO {
+
+    private int boardNo;
     private String nickname;
     private String title;
     private String content;
+    private Timestamp boardDate;
     private List<CommentDTO> comments;
 
     // 기본 생성자
     public BoardDTO() {}
 
-    // 변환용 생성자
+    // Entity -> DTO 변환용 생성자
     public BoardDTO(Board board) {
+        this.boardNo = board.getBoardNo();
         this.nickname = board.getNickname();
         this.title = board.getTitle();
         this.content = board.getContent();
+        this.boardDate = board.getBoard_date();
+        // 댓글 리스트를 CommentDTO로 변환하여 설정
         this.comments = board.getComments().stream()
-                            .map(CommentDTO::new)
-                            .collect(Collectors.toList());
+                              .map(comment -> new CommentDTO(comment))
+                              .collect(Collectors.toList());
     }
 
-    // Getter & Setter
+    // Getter & Setter 메서드
+    public int getBoardNo() {
+        return boardNo;
+    }
+
+    public void setBoardNo(int boardNo) {
+        this.boardNo = boardNo;
+    }
+
     public String getNickname() {
         return nickname;
     }
@@ -47,6 +62,14 @@ public class BoardDTO {
         this.content = content;
     }
 
+    public Timestamp getBoardDate() {
+        return boardDate;
+    }
+
+    public void setBoardDate(Timestamp boardDate) {
+        this.boardDate = boardDate;
+    }
+
     public List<CommentDTO> getComments() {
         return comments;
     }
@@ -55,23 +78,19 @@ public class BoardDTO {
         this.comments = comments;
     }
 
-    // BoardDTO → Board 변환 메서드
+    // DTO -> Entity 변환 메서드
     public Board toEntity() {
-        return new Board.BoardBuilder()
-                .nickname(this.nickname)
-                .title(this.title)
-                .content(this.content)
-                .build();
-    }
-
-    // toString() 오버라이드
-    @Override
-    public String toString() {
-        return "BoardDTO{" +
-                "nickname='" + nickname + '\'' +
-                ", title='" + title + '\'' +
-                ", content='" + content + '\'' +
-                ", comments=" + comments +
-                '}';
+        // 댓글 리스트를 Entity로 변환
+        List<Comment> commentEntities = this.comments.stream()
+                                                     .map(CommentDTO::toEntity)
+                                                     .collect(Collectors.toList());
+        // BoardEntity로 변환 후 반환
+        return Board.builder()
+                    .boardNo(this.boardNo)
+                    .nickname(this.nickname)
+                    .title(this.title)
+                    .content(this.content)
+                    .comments(commentEntities)
+                    .build();
     }
 }
