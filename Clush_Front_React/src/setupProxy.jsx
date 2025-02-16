@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     "/clushAPI",
     createProxyMiddleware({
-      target: "http://localhost:7777",
+      target: "http://58.225.45.251:7777/",
       changeOrigin: true,
     })
   );
