@@ -41,7 +41,6 @@ public class BoardController {
         this.boardService = boardService;
     }
 	
-	// 모든 게시판 조회
  // 모든 게시판 조회
     @GetMapping("/getAllBoard")
     public ResponseEntity<List<Board>> getAllBoard() {

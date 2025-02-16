@@ -1,5 +1,6 @@
 package com.Clush.app.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -25,12 +26,13 @@ public class BoardService {
     
     @Transactional(readOnly = true)
     public List<Board> getAllBoards() {
-    	try {
+        try {
             return boardRepository.findAll();
         } catch (Exception e) {
-            log.error("보드 데이터 로딩 오류: ", e);
-            throw new RuntimeException("보드 데이터를 불러오는 데 실패했습니다.");
+            log.error("데이터 조회 중 오류 발생", e);
+            return Collections.emptyList(); // 예외 발생 시 빈 리스트 반환
         }
     }
+
 }
 

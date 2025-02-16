@@ -28,7 +28,7 @@ public class SecurityConfig {
 				.anonymous(anonymous -> anonymous.disable())
 
 				.authorizeHttpRequests(
-						(authorizeRequests) -> authorizeRequests.requestMatchers("/", "/api/**").permitAll() // 인증 필요 없음
+						(authorizeRequests) -> authorizeRequests.requestMatchers("/", "/clushAPI/**","getAllBoard").permitAll() // 인증 필요 없음
 								// .anyRequest().authenticated() // 그 외는 인증 필요
 								.anyRequest().permitAll() // ✅ 모든 요청 허용 (테스트 목적)
 				);
