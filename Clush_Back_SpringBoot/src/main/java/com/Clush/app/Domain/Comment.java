@@ -4,13 +4,11 @@ import java.sql.Timestamp;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Builder;
 
 @Entity
 @Data
@@ -20,32 +18,65 @@ import lombok.NoArgsConstructor;
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "comment_no", nullable = false)
+    @Column(name = "comment_no")
     private int commentNo;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "board_no")  // 외래키로 연결
-    @JsonIgnore  // 무한 참조 방지
-    private Board board;
 
     @Column(nullable = false, length = 50)
     private String nickname;
 
-    @Column(nullable = false, length = 1000)
+    @Column(length = 1000)
     private String content;
 
     @CreationTimestamp
-    private Timestamp comment_date;
+    private Timestamp commentDate;
 
-    // JSON에서 "board": "1"로 들어오는 값을 Board 객체로 변환
-    public void setBoard(Long boardNo) {
-        Board board = new Board(); // 새 Board 객체 생성
-        board.setBoardNo(boardNo.intValue()); // int로 변환 후 설정
-        this.board = board;
+    // Board와의 ManyToOne 관계 설정
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "board_no", nullable = false)
+    @JsonBackReference  // 순환 참조 방지
+    private Board board;
+
+    // 생성자 (빌더 패턴)
+    private Comment(CommentBuilder builder) {
+        this.commentNo = builder.commentNo;
+        this.nickname = builder.nickname;
+        this.content = builder.content;
+        this.board = builder.board;
     }
 
-    // 수동으로 builder 메서드 추가 (Optional)
-    public static CommentBuilder builderWithCommentNo(int commentNo) {
-        return builder().commentNo(commentNo);  // builder로 생성하며 commentNo만 설정
+    // 빌더 클래스
+    public static class CommentBuilder {
+        private int commentNo;
+        private String nickname;
+        private String content;
+        private Board board;
+
+        public CommentBuilder commentNo(int commentNo) {
+            this.commentNo = commentNo;
+            return this;
+        }
+
+        public CommentBuilder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public CommentBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public CommentBuilder board(Board board) {
+            this.board = board;
+            return this;
+        }
+
+        public Comment build() {
+            return new Comment(this);
+        }
+    }
+
+    public static CommentBuilder builder() {
+        return new CommentBuilder();
     }
 }

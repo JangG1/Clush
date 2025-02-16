@@ -50,8 +50,47 @@ public class Board {
         this.boardNo = boardNo;
     }
 
-    // 수동으로 builder 메서드 추가 (Optional)
-    public static BoardBuilder builderWithBoardNo(int boardNo) {
-        return builder().boardNo(boardNo);  // builder로 생성하며 boardNo만 설정
+    // 생성자
+    private Board(BoardBuilder builder) {
+        this.boardNo = builder.boardNo;
+        this.nickname = builder.nickname;
+        this.title = builder.title;
+        this.content = builder.content;
+    }
+
+    // 빌더 클래스
+    public static class BoardBuilder {
+        private int boardNo;
+        private String nickname;
+        private String title;
+        private String content;
+
+        public BoardBuilder boardNo(int boardNo) {
+            this.boardNo = boardNo;
+            return this;
+        }
+
+        public BoardBuilder nickname(String nickname) {
+            this.nickname = nickname;
+            return this;
+        }
+
+        public BoardBuilder title(String title) {
+            this.title = title;
+            return this;
+        }
+
+        public BoardBuilder content(String content) {
+            this.content = content;
+            return this;
+        }
+
+        public Board build() {
+            return new Board(this);
+        }
+    }
+
+    public static BoardBuilder builder() {
+        return new BoardBuilder();
     }
 }
