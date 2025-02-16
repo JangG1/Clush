@@ -17,7 +17,7 @@ function BoardContent() {
   // 게시물 상세 내용 조회
   useEffect(() => {
     axios
-      .get(`/api/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
+      .get(`/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
         console.log(response.data); // 받은 데이터를 확인
         setBoardDetails(response.data); // 상태에 저장
@@ -28,7 +28,7 @@ function BoardContent() {
 
     // 댓글 조회
     axios
-      .get(`/api/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
+      .get(`/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
       .then((response) => {
         console.log(response.data);
         setComments(response.data); // 댓글 목록 상태에 저장
@@ -50,7 +50,7 @@ function BoardContent() {
       console.log("현재 닉네임 : " + boardDetails.nickname);
       if (pw == password) {
         axios
-          .delete(`/api/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+          .delete(`/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
           .then((response) => {
             console.log(response.data); // 응답 확인
             alert("게시물이 삭제되었습니다.");
@@ -72,7 +72,7 @@ function BoardContent() {
       return;
     }
     axios
-      .post(`/api/addComment`, {
+      .post(`/clushAPI/addComment`, {
         boardNo: Number(boardNo),
         nickname: nickname,
         content: replyData,

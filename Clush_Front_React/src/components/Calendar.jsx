@@ -19,7 +19,7 @@ const MyCalendar = () => {
   useEffect(() => {
     // 날씨 데이터를 API로부터 가져옴
     axios
-      .get("/api/weather")
+      .get("/clushAPI/weather")
       .then((response) => {
         setWeatherData(response.data); // 날씨 데이터 상태에 저장
       })

@@ -10,7 +10,7 @@ function BoardWrite() {
 
   const handleSendMessage = () => {
     axios
-      .post(`/api/boardSave`, {
+      .post(`/clushAPI/boardSave`, {
         nickname: message1,
         title: message2,
         content: message3,
