@@ -96,11 +96,6 @@
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-crypto</artifactId>
     </dependency>
-		<dependency>
-			<groupId>com.FT</groupId>
-			<artifactId>FastripBackend</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
