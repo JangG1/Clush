@@ -71,6 +71,18 @@ public class Board {
         return comments;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+    
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
