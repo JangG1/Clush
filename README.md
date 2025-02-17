@@ -3,7 +3,6 @@
 <hr>
 
 <img width="660" alt="FastripMain" src="https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec">
-
 <hr>
 
 <h3> 📰 CI/CD Status 📰 </h3>
@@ -140,29 +139,49 @@ Demo : http://clush.shop
 <hr>
 
 <h3>🔨 Advanced Feature 🔨</h3>
-<h3> 1. Main Page </h3>
- <kbd>
-준비중...
-  </kbd><br>
 
-<h3> 2. To-Do Page </h3>
-   
+<h3> 1. To-Do Page </h3>
+
  <kbd>
-준비중...
+  <img width="820" src="https://github.com/user-attachments/assets/06e189d7-a942-4344-b966-3d71324939e3">
   </kbd><br>
  
-<h3> 3. Calendar Page<h3>
+ 
+<h3> 2. Calendar Page<h3>
 
  <kbd>
-준비중...
+  <img width="820" src="https://github.com/user-attachments/assets/25185dcf-35ab-46da-a6c8-f7b580677ddf">
   </kbd><br>
  
-<h3> 4. Board Page<h3>
+<h3> 3. Board Page<h3>
 
+<h3>👉 Description<h3>
+
+<li>Board Insert</li>
+<br>
  <kbd>
-준비중...
+<img width="820" src="https://github.com/user-attachments/assets/c0d2b300-b0a4-4d7b-a478-da127567dc4a">
   </kbd><br>
-
+<br>
+ <li>Board Put</li>
+ <br>
+ <kbd>
+<img width="820" src="https://github.com/user-attachments/assets/c1509750-c64b-4bde-b106-1aa544e88709">
+  </kbd><br>
+  <br>
+<li>Board Delete</li>
+<br>
+ <kbd>
+<img width="820" src="https://github.com/user-attachments/assets/efd755a6-b4a3-445c-9f53-fda67f76a66d">
+  </kbd><br>
+  <br>
+<li>Comment</li>
+<br>
+ <kbd>
+  준비중
+<img width="820" src="">
+  </kbd><br>
+  <br>
 <hr>
 
 <h3>👷‍♂️ Improvements 👷‍♂️</h3>
