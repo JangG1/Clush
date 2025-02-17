@@ -2,7 +2,7 @@
 
 <hr>
 
-<img width="960" alt="FastripMain" src="https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec">
+<img width="660" alt="FastripMain" src="https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec">
 
 <hr>
 
