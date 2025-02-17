@@ -36,17 +36,12 @@
 .custom-calendar .ant-picker-calendar-date:hover {
   background: #e6f7ff; /* 마우스 오버 시 배경색 변경 */
   border: 2px solid rgb(53, 53, 239);
-
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .custom-calendar .custom-date-cell {
   background: #fafafa;
   border-radius: 5px;
-}
-
-.date {
-  text-align: center;
+  background-color: transparent !important;
 }
 
 .deleteBtn {
@@ -78,7 +73,8 @@
 
 .ant-picker-calendar-date-content {
   height: 21vh !important;
-  overflow-y: scroll;
+  overflow-y: auto;
+  z-index: 1000;
 }
 
 /* 스크롤바 크기 */
@@ -96,6 +92,12 @@
 .ant-picker-calendar-date-content::-webkit-scrollbar-track {
   background-color: rgb(18, 51, 120);
   border-radius: 10px;
+}
+
+.ant-btn-primary.ant-btn-variant-solid.dateCell {
+  width: 77.5%;
+  z-index: 100;
+  background-color: transparent !important;
 }
 
 .dateCellBtn {
@@ -116,7 +118,7 @@
   height: 15vh;
   text-align: center; /* 텍스트 가운데 정렬 */
   position: absolute; /* 절대 위치로 설정하여 부모 요소를 기준으로 위치 조정 */
-  background-color: white;
+  background-color: transparent !important;
 }
 
 .dateCell:hover {

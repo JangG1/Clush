@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // URL 파라미터 가져오기
 import "./BoardContent.css";
-
+import AOS from "aos";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function BoardContent() {
@@ -13,11 +13,16 @@ function BoardContent() {
   const { boardNo } = useParams(); // URL에서 boardNo 파라미터를 가져옵니다
   const [currentPage, setCurrentPage] = useState(1);
   const commentsPerPage = 5;
+  const [isLoading, setIsLoading] = useState(false);
+  const [updateContent, setUpdateContent] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [contentToggle, setContentToggle] = useState(true);
 
   // 게시물 상세 내용 조회
   useEffect(() => {
     const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
+    setIsLoading(true);
     axios
       .get(EX_IP + `/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
@@ -26,8 +31,10 @@ function BoardContent() {
       })
       .catch((error) => {
         console.error("Error fetching board details:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // 요청 완료 후 로딩 상태 비활성화
       });
-
     // 댓글 조회
     axios
       .get(EX_IP + `/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
@@ -40,7 +47,22 @@ function BoardContent() {
       });
   }, [boardNo]); // boardNo가 변경될 때마다 호출됨
 
-  if (!boardDetails) return <div className="loading">Loading...</div>; // 로딩 상태 표시
+  // 게시글 수정 (PUT)
+  const handleUpdateMessage = () => {
+    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
+
+    axios
+      .put(`${EX_IP}/clushAPI/updateBoard/${boardNo}`, {
+        nickname: boardDetails.nickname,
+        title: boardDetails.title,
+        content: updateContent,
+      })
+      .then((response) => {
+        alert("게시물이 수정되었습니다.");
+        window.location.href = "/Board";
+      })
+      .catch((error) => console.error("Error updating message:", error));
+  };
 
   // 게시물 삭제 함수
   const deleteBoard = () => {
@@ -124,6 +146,16 @@ function BoardContent() {
     );
   };
 
+  const updateToggle = () => {
+    setIsEditing(true);
+    setContentToggle(false);
+    setUpdateContent(boardDetails.content);
+  };
+
+  const handleChange = (e) => {
+    setUpdateContent(e.target.value); // Get the value from the event
+  };
+
   const indexOfLastComment = currentPage * commentsPerPage;
   const indexOfFirstComment = indexOfLastComment - commentsPerPage;
   const currentComments = comments.slice(
@@ -134,87 +166,121 @@ function BoardContent() {
 
   return (
     <div>
-      <div className="boardContentContainer">
-        <div className="boardContent">
-          <h1 className="boardContentTitle">{boardDetails.title}</h1>
-          <div className="boardContentMeta">
-            <span className="boardContentNo">
-              게시판 번호: {boardDetails.boardNo}
-            </span>
-            <span className="boardContentDate">
-              작성 날짜: {formatDate(boardDetails.board_date)}
-            </span>
-            <span className="boardContentNickname">
-              작성자: {boardDetails.nickname}
-            </span>
-          </div>
-          <div className="boardContentBody">
-            <p>{boardDetails.content}</p>
-          </div>
+      {isLoading ? (
+        <div className="boardLoading">
+          <img src="/image/clush_logo2.png" className="LoadingImage" />
+          <br></br>
+          <p>게시글 불러오는 중...</p>
         </div>
-      </div>
-
-      {/* 댓글 영역 */}
-      <div className="reply">
-        <div>댓글 {comments.length}개</div>
-
-        {/* 댓글 목록 */}
-        <div className="commentList">
-          {currentComments.map((comment) => (
-            <div key={comment.comment_no} className="commentItem">
-              <div className="commentNickname">{comment.nickname}</div>
-              <div className="commentContent">{comment.content}</div>
-              <div className="commentDate">
-                {formatDate(comment.comment_date)}
-              </div>
+      ) : boardDetails ? (
+        <div className="boardContentContainer">
+          <div className="boardContent">
+            <h1 className="boardContentTitle">{boardDetails.title}</h1>
+            <div className="boardContentMeta">
+              <span className="boardContentNo">
+                게시판 번호: {boardDetails.boardNo}
+              </span>
+              <span className="boardContentDate">
+                작성 날짜: {formatDate(boardDetails.board_date)}
+              </span>
+              <span className="boardContentNickname">
+                작성자: {boardDetails.nickname}
+              </span>
             </div>
-          ))}
-        </div>
+            {contentToggle ? (
+              <div className="boardContentBody">
+                <button className="updateBoard1" onClick={updateToggle}>
+                  수정하기
+                </button>
+                <p>{boardDetails.content}</p>
+              </div>
+            ) : (
+              <textarea
+                className="boardContentBody"
+                value={updateContent}
+                onChange={handleChange}
+              ></textarea>
+            )}
+          </div>
 
-        {/* 페이지네이션 */}
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button key={index + 1} onClick={() => setCurrentPage(index + 1)}>
-              {index + 1}
+          {/* 댓글 영역 */}
+          <div className="reply">
+            <div>댓글 {comments.length}개</div>
+
+            {/* 댓글 목록 */}
+            <div className="commentList">
+              {currentComments.map((comment) => (
+                <div key={comment.comment_no} className="commentItem">
+                  <div className="commentNickname">{comment.nickname}</div>
+                  <div className="commentContent">{comment.content}</div>
+                  <div className="commentDate">
+                    {formatDate(comment.commentDate)}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 페이지네이션 */}
+            <div className="pagination">
+              {Array.from({ length: totalPages }, (_, index) => (
+                <button
+                  key={index + 1}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+            </div>
+
+            {/* 댓글 입력 */}
+            <div className="replyNickname">
+              <span>작성자</span>
+              <br />
+              <input
+                type="text"
+                className="replyNicknameBody"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+            </div>
+            <br />
+            <span>내용</span>
+            <br />
+            <textarea
+              className="replyBody"
+              type="text"
+              value={replyData}
+              onChange={(e) => setReplyData(e.target.value)} // 댓글 내용 입력
+            />
+            <br />
+            <button className="replyBtn" onClick={handleAddComment}>
+              댓글달기
             </button>
-          ))}
-        </div>
-        {/* 댓글 입력 */}
-        <div className="replyNickname">
-          <span>작성자</span>
-          <br />
-          <input
-            type="text"
-            className="replyNicknameBody"
-            value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
-          />
-        </div>
-        <br />
-        <span>내용</span>
-        <br />
-        <textarea
-          className="replyBody"
-          type="text"
-          value={replyData}
-          onChange={(e) => setReplyData(e.target.value)} // 댓글 내용 입력
-        />
-        <br />
-        <button className="replyBtn" onClick={handleAddComment}>
-          댓글달기
-        </button>
-      </div>
+          </div>
 
-      {/* 게시물 삭제 및 뒤로가기 버튼 */}
-      <div className="boardContentBtn">
-        <button className="toBoardBtnByBC">
-          <Link to="/Board">뒤로가기</Link>
-        </button>
-
-        <button className="boardContentDeleteBtn" onClick={deleteBoard}>
-          삭제하기
-        </button>
-      </div>
+          {/* 게시물 삭제, 수정하기, 뒤로가기 버튼 */}
+          <div className="boardContentBtn">
+            {/* 뒤로가기 버튼 */}
+            <button className="toBoardBtnByBC">
+              <Link to="/Board">뒤로가기</Link>
+            </button>
+            <div>
+              {/* 수정하기 버튼(게시글 내용 수정하기 버튼 클릭시 활성화) */}
+              {isEditing ? (
+                <button className="updateBoard2" onClick={handleUpdateMessage}>
+                  수정하기
+                </button>
+              ) : null}
+              {/* 삭제하기 버튼 */}
+            </div>
+            <button className="boardContentDeleteBtn" onClick={deleteBoard}>
+              삭제하기
+            </button>
+          </div>
+        </div>
+      ) : (
+        <div>게시물 로딩 실패</div> // 로딩 실패 시 메시지
+      )}
     </div>
   );
 }

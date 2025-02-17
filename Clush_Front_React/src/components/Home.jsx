@@ -92,7 +92,7 @@ function Home() {
 
       {/* Body 시작 */}
       <div className="body">
-        <div className="bodyText" data-aos="fade-down" data-aos-duration="1500">
+        <div className="bodyText" data-aos="fade-down" data-aos-duration="1300">
           <div className="bodyText1">
             CLUSH는 국내 최초의 컨테이너 클라우드 서비스 전문가 집단으로 <br />{" "}
             도커 및 DevOps에 최적화된 조직입니다.
@@ -107,8 +107,8 @@ function Home() {
         <div
           className="cardBody"
           data-aos="fade-down"
-          data-aos-duration="2000"
-          data-aos-offset="0"
+          data-aos-duration="1500"
+          data-aos-offset="20"
         >
           <div style={{ fontSize: "40px", marginLeft: "10%" }}>
             Business PortFolio
@@ -175,8 +175,8 @@ function Home() {
         <div
           className="body1"
           data-aos="fade-right"
-          data-aos-duration="1500"
-          data-aos-offset="50"
+          data-aos-duration="1400"
+          data-aos-offset="20"
         >
           <div className="body1_Left">
             <img src="/image/body1.jpg" className="body1_Image1" />
@@ -205,8 +205,8 @@ function Home() {
         <div
           className="body2"
           data-aos="fade-left"
-          data-aos-duration="1500"
-          data-aos-offset="50"
+          data-aos-duration="1400"
+          data-aos-offset="20"
         >
           <div className="body2_Left">
             <div className="body2_Box1">02</div>
@@ -236,8 +236,8 @@ function Home() {
         <div
           className="body3"
           data-aos="fade-right"
-          data-aos-duration="1500"
-          data-aos-offset="50"
+          data-aos-duration="1400"
+          data-aos-offset="20"
         >
           <div className="body3_Left">
             <img src="/image/body3.jpg" className="body3_Image1" />
@@ -267,8 +267,8 @@ function Home() {
         <div
           className="body4"
           data-aos="fade-left"
-          data-aos-duration="1500"
-          data-aos-offset="50"
+          data-aos-duration="1400"
+          data-aos-offset="20"
         >
           <div className="body4_Left">
             <div className="body4_Box1">04</div>

@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 
 function Board() {
   const [boardData, setBoardData] = useState([]);
-
+  const [isLoading, setIsLoading] = useState(false);
   // 게시판 모든 내용 조회
   useEffect(() => {
     const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
+    setIsLoading(true); // 데이터 요청 시작 시 로딩 상태 활성화
     axios
       .get(EX_IP + "/clushAPI/getAllBoard")
       .then((response) => {
@@ -18,6 +19,9 @@ function Board() {
       })
       .catch((error) => {
         console.error("Error fetching board data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // 요청 완료 후 로딩 상태 비활성화
       });
   }, []); // 빈 배열을 넣어서 처음 마운트될 때만 실행됨
 
@@ -51,7 +55,13 @@ function Board() {
           <div className="boardBodyTitle4">작성날짜</div>
         </div>
 
-        {boardData.length > 0 ? (
+        {isLoading ? (
+          <div className="boardLoading">
+            <img src="/image/clush_logo2.png" className="LoadingImage" />
+            <br></br>
+            <p>게시글 불러오는 중...</p>
+          </div>
+        ) : boardData.length > 0 ? (
           boardData.map((item, index) => (
             <div key={index} className="boardItem">
               <div className="boardBody1">{item.boardNo}</div>

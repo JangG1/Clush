@@ -6,29 +6,28 @@ import axios from "axios";
 const TodoApp = () => {
   const { todos, addTodo, deleteTodo } = useStore();
   const [input, setInput] = useState("");
-  const [news, setNews] = useState([]); // 초기값을 빈 배열로 설정
-  const [keyword, setKeyword] = useState(""); // 검색어
+  const [news, setNews] = useState([]);
+  const [keyword, setKeyword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchNews = async () => {
-    if (!keyword) return; // 검색어가 비어 있으면 요청을 보내지 않음
+    if (!keyword) return;
 
+    setIsLoading(true); // 데이터 요청 시작 시 로딩 상태 활성화
     const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
-
     axios
-      .get(EX_IP + `/clushAPI/news/${encodeURIComponent(keyword)}`) // 해당 게시물의 ID로 API 호출
+      .get(EX_IP + `/clushAPI/news/${encodeURIComponent(keyword)}`)
       .then((response) => {
-        console.log("데이터 도착 : ", response.data.data); // 받은 데이터를 확인
-        setNews(response.data.data.items); // JSON에서 필요한 데이터만 추출하여 상태에 설정
+        console.log("데이터 도착 : ", response.data.data);
+        setNews(response.data.data.items);
       })
       .catch((error) => {
         console.error("Error fetching board details:", error);
+      })
+      .finally(() => {
+        setIsLoading(false); // 요청 완료 후 로딩 상태 비활성화
       });
   };
-
-  // news 상태가 업데이트된 후에 콘솔을 출력하도록 useEffect 사용
-  useEffect(() => {
-    console.log(news); // news의 실제 데이터 확인
-  }, [news]);
 
   // 할 일을 추가하는 함수
   const handleAddTodo = () => {
@@ -39,8 +38,12 @@ const TodoApp = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(news);
+  }, [news]);
+
   function cleanChar(title) {
-    if (!title) return ""; // title이 undefined일 때 처리
+    if (!title) return "";
     return title
       .replace(/&quot;/g, '"')
       .replace(/<br\s*\/?>/g, " ")
@@ -63,7 +66,8 @@ const TodoApp = () => {
               placeholder="할 일을 입력하세요"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  handleAddTodo();
+                  addTodo({ id: Date.now(), text: input });
+                  setInput("");
                 }
               }}
             />
@@ -76,9 +80,7 @@ const TodoApp = () => {
             <div className="todoListTitle">TO-DO LIST</div>
             {todos.map((todo) => (
               <div className="todoIdx" key={todo.id}>
-                <div className="todoTime">{todo.time}</div>
                 <div className="todoText">{todo.text}</div>
-
                 <div className="todoDelete">
                   <button
                     className="todoDeleteBtn"
@@ -93,7 +95,6 @@ const TodoApp = () => {
         </div>
 
         <div className="newsBody">
-          {/* 검색어 입력 */}
           <div className="newsSearchBar">
             <img src="/image/clush_logo2.png" />
             <input
@@ -106,14 +107,20 @@ const TodoApp = () => {
                   fetchNews();
                 }
               }}
-              tabIndex={0} // 키보드 포커스를 받을 수 있도록 설정
             />
-
             <button className="newsSearchBtn" onClick={fetchNews}>
               🔍
             </button>
           </div>
-          {news.length > 0 ? (
+
+          {/* ✅ 로딩 중 화면 표시 */}
+          {isLoading ? (
+            <div className="newsLoading">
+              <img src="/image/clush_logo2.png" className="LoadingImage" />
+              <br></br>
+              <p>뉴스를 불러오는 중...</p>
+            </div>
+          ) : news.length > 0 ? (
             <div className="newsCellBody">
               {news.map((item, index) => (
                 <div key={index} className="newsCell">
@@ -137,10 +144,9 @@ const TodoApp = () => {
             <div className="newsCellBodyTemp">
               <div className="newsCellBodyTempText">무엇이든 검색해보세요!</div>
               <br />
-              <img
-                src="/image/newsBodyTemp.gif"
-                className="newsCellBodyTempImage"
-              />
+              <div className="newsCellBodyTempImage">
+                <img src="/image/newsBodyTemp.gif" />
+              </div>
             </div>
           )}
         </div>

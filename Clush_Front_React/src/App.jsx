@@ -11,21 +11,16 @@ import BoardContent from "./components/BoardContent";
 function App() {
   const [menuBarHover, setIsHovering] = useState(false);
 
-  //페이지 최상단 이동
   const scrollToTop = (e) => {
-    e.preventDefault(); // 기본 동작인 페이지 리로드를 방지합니다.
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // 부드럽게 스크롤
-    });
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
-    <div className="App">
-      {/* Header 시작 */}
-      <header className="App-header">
-        {/* 라우팅 메뉴바 시작*/}
-        <Router>
+    <div className="App" style={styles.appContainer}>
+      <Router>
+        {/* Header */}
+        <header className="App-header">
           <div
             style={menuBarHover ? styles.menuBarHover : styles.menu}
             onMouseOver={() => setIsHovering(true)}
@@ -34,19 +29,24 @@ function App() {
             <a href="/">
               <img src="/image/clush_logo1.png" style={styles.clushLogo} />
             </a>
-            <nav style={menuBarHover ? styles.nav : styles.navHide}>
-              <Link style={styles.navBoardBtn} to="/ToDo">
-                ToDo
-              </Link>
-              <Link style={styles.navBoardBtn} to="/Calendar">
-                Calendar
-              </Link>
-              <Link style={styles.navBoardBtn} to="/Board">
-                Board
-              </Link>
-            </nav>
+            <div style={styles.menuBar}>
+              <nav style={menuBarHover ? styles.nav : styles.navHide}>
+                <Link style={styles.navBoardBtn} to="/ToDo">
+                  ToDo
+                </Link>
+                <Link style={styles.navBoardBtn} to="/Calendar">
+                  Calendar
+                </Link>
+                <Link style={styles.navBoardBtn} to="/Board">
+                  Board
+                </Link>
+              </nav>
+            </div>
           </div>
+        </header>
 
+        {/* Main Content */}
+        <main style={styles.content}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/ToDo" element={<ToDo />} />
@@ -55,19 +55,10 @@ function App() {
             <Route path="/BoardWrite" element={<BoardWrite />} />
             <Route path="/BoardContent/:boardNo" element={<BoardContent />} />
           </Routes>
-        </Router>
-      </header>
+        </main>
 
-      {/* 라우팅 메뉴바 종료 */}
-      {/* Header 종료 */}
-
-      <br></br>
-
-      <br></br>
-
-      {/* Footer 시작 */}
-      <footer>
-        <div style={styles.footer}>
+        {/* Footer */}
+        <footer style={styles.footer}>
           <div>
             <img src="/image/clush_logo1.png" style={styles.clushLogo} />
             <a className="focus" href="/" onClick={scrollToTop}>
@@ -78,19 +69,17 @@ function App() {
               />
             </a>
           </div>
-          <br></br>
+          <br />
           <div>개인정보처리방침 | 이메일무단수집거부</div>
-          <br></br>
+          <br />
           <div>
             (주)클러쉬 | 서울특별시 강남구 테헤란로20길 9 5층 (동궁빌딩) |
             대표번호 02.2039.0100 | contact@clush.net
           </div>
-          <br></br>
+          <br />
           <div>COPYRIGHT(C) CLUSH INC. ALL RIGHTS RESERVED.</div>
-        </div>
-      </footer>
-
-      {/* Footer 종료 */}
+        </footer>
+      </Router>
     </div>
   );
 }
@@ -113,6 +102,10 @@ const styles = {
     padding: "10px",
     display: "flex", // 메뉴 아이템을 가로로 배치
     alignItems: "center", // 세로 가운데 정렬
+  },
+  menuBar: {
+    width: "40%",
+    marginLeft: "30%",
   },
   menuBarHover: {
     backgroundColor: "rgba(42, 54, 107, 0.3)", // 배경만 투명
@@ -146,10 +139,18 @@ const styles = {
     paddingRight: "20%",
     textDecoration: "none" /* 마우스 올려도 밑줄 제거 */,
   },
-
+  appContainer: {
+    display: "flex",
+    flexDirection: "column",
+    minHeight: "100vh",
+  },
+  content: {
+    flexGrow: 1, // 남은 공간을 차지하도록 설정
+  },
   footer: {
+    width: "100%",
     height: "200px",
-    backgroundColor: "rgba(62, 58, 122, 0.3)", // 배경만 투명
+    backgroundColor: "rgba(62, 58, 122, 0.3)",
     color: "#333",
     padding: "50px 0px 0px 40px",
     fontSize: "12px",

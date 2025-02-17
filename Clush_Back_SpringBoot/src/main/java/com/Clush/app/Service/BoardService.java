@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.Clush.app.Domain.Board;
+import com.Clush.app.Domain.BoardDTO;
 import com.Clush.app.Repository.BoardRepository;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +42,21 @@ public class BoardService {
         }
     }
 
+    // 게시글 수정 기능
+    @Transactional
+    public BoardDTO updateBoard(int boardNo, BoardDTO boardDTO) {
+        // 1. 게시글 찾기
+        Board board = boardRepository.findById(boardNo)
+            .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 존재하지 않습니다. ID: " + boardNo));
+
+        // 2. 내용 업데이트
+        board.setTitle(boardDTO.getTitle());
+        board.setContent(boardDTO.getContent());
+        board.setNickname(boardDTO.getNickname());
+
+        // 3. 변경된 엔티티 저장 후 DTO로 변환하여 반환
+        Board updatedBoard = boardRepository.save(board);
+        return new BoardDTO(updatedBoard);
+    }
 }
 

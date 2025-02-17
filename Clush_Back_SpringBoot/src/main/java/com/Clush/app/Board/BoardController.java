@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -72,6 +74,16 @@ public class BoardController {
 	    return ResponseEntity.status(HttpStatus.CREATED).body("게시판 등록 완료");
 	}
 	
+	// 게시판 정보 수정
+    @PutMapping("/updateBoard/{boardNo}")
+    public ResponseEntity<BoardDTO> updateBoard(
+        @PathVariable int boardNo,
+        @RequestBody BoardDTO boardDTO
+    ) {
+        BoardDTO updatedBoard = boardService.updateBoard(boardNo, boardDTO);
+        return ResponseEntity.ok(updatedBoard);
+    }
+    
 	// 게시판 번호를 통한 조회 기준으로 게시판 삭제
 	@DeleteMapping("/removeBoard/{boardNo}")
 	public void deleteBoard(@PathVariable("boardNo") Board boardNo) {
