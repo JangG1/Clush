@@ -26,7 +26,7 @@ Demo : http://clush.shop
 <br>
 
 <h3>🎯 Purpose 🎯</h3>
-<li> To-Do: Naver News API를 통한 기사 검색과 할일 추가 기능 </li>
+<li> To-Do: Naver News API를 통한 기사 검색과 할일 추가 기능(상태 관리 라이브러리 Zustand를 이용한 데이터 보존) </li>
 <li> Calendar: Ant-Desing의 Calendar를 커스터마이징 및 OpenWeather API를 통한 해당 날짜 기준 5일치의 날씨 정보 가져오기 </li>
 <li> Board: 게시판 CRUD 기능 및 해당 게시판의 댓글 달기 기능</li>
 <li> CI/CD 파이프라인 구축으로 git push 명령어만으로 테스트와 빌드, 배포 과정을 자동화 <br> (GitHub Actions, Shell Script) </li>
