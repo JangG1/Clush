@@ -1,9 +1,9 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=300&section=header&text=Fastrip&fontSize=90"/>
 
 <hr>
-# Clush
+
 <img width="960" alt="FastripMain" src="https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec">
-![Image](https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec)
+
 <hr>
 
 <h3> 📰 CI/CD Status 📰 </h3>
