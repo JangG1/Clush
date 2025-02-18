@@ -37,7 +37,7 @@ class CommentRepositoryTest {
     @DisplayName("댓글 저장 테스트 - 정상 케이스")
     void testSaveComment_Success() {
         // given
-        Board mockBoard = new Board();
+        Board mockBoard = new Board(0, null, null, null);
         mockBoard.setBoardNo(1);
 
         Comment comment = new Comment();
@@ -85,7 +85,7 @@ class CommentRepositoryTest {
     @DisplayName("게시글 번호로 댓글 조회 테스트")
     void testFindCommentsByBoardNo() {
         // given
-        Board mockBoard = new Board();
+        Board mockBoard = new Board(0, null, null, null, null, null);
         mockBoard.setBoardNo(1);
 
         Comment comment1 = new Comment();

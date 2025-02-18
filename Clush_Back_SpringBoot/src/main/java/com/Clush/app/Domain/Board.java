@@ -58,7 +58,11 @@ public class Board {
 		this.title = builder.title;
 		this.content = builder.content;
 	}
-
+	
+	public void setBoardNo(int boardNo) {
+	    this.boardNo = boardNo;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
@@ -141,7 +145,8 @@ public class Board {
 	}
 
 	// 수동으로 기본 생성자 추가
-	public Board() {
+	public Board(int boardNo, String title, String content, String comments) {
+		this.boardNo = boardNo;
 		this.nickname = "defaultNickname"; // 예시로 기본값 할당
 		this.title = "defaultTitle"; // 예시로 기본값 할당
 		this.comments = new ArrayList<>(); // 댓글 리스트 초기화
