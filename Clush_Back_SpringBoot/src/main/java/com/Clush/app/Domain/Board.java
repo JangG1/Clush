@@ -61,6 +61,10 @@ public class Board {
         this.comments = builder.comments != null ? builder.comments : new ArrayList<>();
     }
     
+    public void setBoardNo(int boardNo) {
+        this.boardNo = boardNo;
+    }
+    
 	public void setTitle(String title) {
 		this.title = title;
 	}
