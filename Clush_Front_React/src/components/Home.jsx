@@ -164,7 +164,8 @@ function Home() {
                 <div className="cardDesc1_1"> Dev Ops</div>
                 <br></br>
                 <div className="cardDesc1_2">
-                  Clous Native Application을 위한 <br></br> MSA 자동화 솔루션
+                  Clous Native <br></br> Application을 위한 <br></br> MSA 자동화
+                  솔루션
                 </div>
               </div>
             </Card>
