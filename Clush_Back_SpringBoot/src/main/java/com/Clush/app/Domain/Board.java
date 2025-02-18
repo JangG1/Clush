@@ -8,107 +8,64 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.Builder;
-
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-//@JsonIgnoreProperties(ignoreUnknown = true) // JSON에 없는 필드는 무시
 @Entity
 @Data
-//@NoArgsConstructor(access = AccessLevel.PUBLIC)  // Lombok이 기본 생성자를 자동 생성
 @AllArgsConstructor
 @DynamicInsert
 public class Board {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "board_no")
-	private int boardNo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "board_no")
+    private int boardNo;
 
-	@Column(nullable = false, length = 50)
-	private String nickname;
+    @Column(nullable = false, length = 50)
+    private String nickname;
 
-	@Column(length = 100)
-	private String title;
+    @Column(length = 100)
+    private String title;
 
-	@Column(length = 5000)
-	private String content;
+    @Column(length = 5000)
+    private String content;
 
-	@CreationTimestamp
-	private Timestamp board_date;
+    @CreationTimestamp
+    private Timestamp board_date;
 
-	// 댓글 목록을 Board와 매핑 (양방향 관계 설정)
-	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-	@JsonManagedReference // 무한 참조 방지
-	private List<Comment> comments = new ArrayList<>();
+    // 댓글 목록을 Board와 매핑 (양방향 관계 설정)
+    @OneToMany(mappedBy = "board", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference // 무한 참조 방지
+    private List<Comment> comments = new ArrayList<>();
 
-	// 빌더 패턴을 사용한 생성자
-	private Board(BoardBuilder builder) {
-		this.boardNo = builder.boardNo;
-		this.nickname = builder.nickname;
-		this.title = builder.title;
-		this.content = builder.content;
-	}
-	
-	public void setBoardNo(int boardNo) {
-	    this.boardNo = boardNo;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
-	
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	
-    public List<Comment> getComments() {
-        return comments;
+    // 기본 생성자 추가 (Hibernate가 필요로 하는 생성자)
+    public Board() {
+        this.comments = new ArrayList<>(); // List 초기화 (null 방지)
     }
 
-    public String getNickname() {
-        return nickname;
+    // 빌더 패턴을 사용한 생성자
+    private Board(BoardBuilder builder) {
+        this.boardNo = builder.boardNo;
+        this.nickname = builder.nickname;
+        this.title = builder.title;
+        this.content = builder.content;
+        this.comments = builder.comments != null ? builder.comments : new ArrayList<>();
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-    
-    public int getBoardNo() {
-        return boardNo;
-    }
-
-    public Timestamp getBoard_date() {
-        return board_date;
-    }
-    
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-	// 빌더 클래스
+    // 빌더 클래스
     public static class BoardBuilder {
         private int boardNo;
         private String nickname;
         private String title;
         private String content;
-        private List<Comment> comments; // comments 필드 추가
+        private List<Comment> comments;
 
         public BoardBuilder boardNo(int boardNo) {
             this.boardNo = boardNo;
@@ -130,7 +87,7 @@ public class Board {
             return this;
         }
 
-        public BoardBuilder comments(List<Comment> comments) { // comments 메서드 추가
+        public BoardBuilder comments(List<Comment> comments) {
             this.comments = comments;
             return this;
         }
@@ -140,17 +97,7 @@ public class Board {
         }
     }
 
-	public static BoardBuilder builder() {
-		return new BoardBuilder();
-	}
-
-	// 수동으로 기본 생성자 추가
-	public Board(int boardNo, String nickname, String title, String content, List<Comment> comments) {
-	    this.boardNo = boardNo;
-	    this.nickname = nickname;  // nickname을 파라미터로 받도록 수정
-	    this.title = title;
-	    this.content = content;
-	    this.comments = comments != null ? comments : new ArrayList<>(); // null 방지 및 기본값 처리
-	}
-
+    public static BoardBuilder builder() {
+        return new BoardBuilder();
+    }
 }
