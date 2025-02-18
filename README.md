@@ -21,7 +21,7 @@
 
 ## Project Demo
 
-Link : http://clush.shop
+- Link : http://clush.shop
 
 ## API 명세서
 
