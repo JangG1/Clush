@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Clush.app.Repository.BoardRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -15,6 +16,7 @@ public class WeatherController {
     private final WeatherService weatherService = new WeatherService();
 
     // 날씨 정보를 반환하는 API
+    @Operation(summary = "Get Weather Info By OpenWeather API")
     @GetMapping("/weather")
     public String getWeather() {
  

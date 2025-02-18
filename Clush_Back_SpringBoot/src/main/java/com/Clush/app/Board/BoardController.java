@@ -22,6 +22,8 @@ import com.Clush.app.Domain.BoardDTO;
 import com.Clush.app.Repository.BoardRepository;
 import com.Clush.app.Service.BoardService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 import java.io.*;
@@ -45,6 +47,7 @@ public class BoardController {
     }
 	
  // 모든 게시판 조회
+    @Operation(summary = "Get all Board Items")
     @GetMapping("/getAllBoard")
     public List<BoardDTO> getAllBoard() {
         List<Board> boards = boardRepository.findAll();
@@ -52,6 +55,7 @@ public class BoardController {
     }
 
 	// 게시판 번호를 통한 조회
+    @Operation(summary = "Get Board by BoardNo")
 	@GetMapping("/getBoard/{boardNo}")
 	public ResponseEntity<Board> getBoardDetails(@PathVariable("boardNo") int boardNo) {
 		Board board = boardRepository.findById(boardNo).orElse(null);
@@ -62,6 +66,7 @@ public class BoardController {
 	}
 
 	// 게시판 정보 저장
+    @Operation(summary = "Save Board")
 	@PostMapping("/boardSave")
 	public ResponseEntity<String> addBoard(@RequestBody BoardDTO boardDTO) {
 	    Board board = Board.builder()
@@ -75,6 +80,7 @@ public class BoardController {
 	}
 	
 	// 게시판 정보 수정
+    @Operation(summary = "Update Board by BoardNo")
     @PutMapping("/updateBoard/{boardNo}")
     public ResponseEntity<BoardDTO> updateBoard(
         @PathVariable int boardNo,
@@ -85,6 +91,7 @@ public class BoardController {
     }
     
 	// 게시판 번호를 통한 조회 기준으로 게시판 삭제
+    @Operation(summary = "Delete Board by BoardNo")
 	@DeleteMapping("/removeBoard/{boardNo}")
 	public void deleteBoard(@PathVariable("boardNo") Board boardNo) {
 		boardRepository.delete(boardNo);

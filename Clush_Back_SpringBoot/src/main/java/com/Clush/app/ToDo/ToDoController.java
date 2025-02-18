@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -19,6 +20,7 @@ public class ToDoController {
     private NaverNewsAPI naverNewsAPI;
     
     // 클라이언트에서 'keyword' 파라미터로 검색어를 받아서 뉴스 정보 제공
+    @Operation(summary = "Get News Info By Naver News API")
     @GetMapping("/news/{keyword}")
     public Map<String, Object> getNews(@PathVariable String keyword) {
         System.out.println("백엔드 전달 완료 : " + keyword);

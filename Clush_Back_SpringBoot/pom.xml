@@ -24,11 +24,11 @@
 
   <dependencies>
     <!-- Springdoc OpenAPI (Swagger 대체 라이브러리) -->
-    <dependency>
-        <groupId>org.springdoc</groupId>
-        <artifactId>springdoc-openapi-ui</artifactId>
-         <version>1.6.9</version> <!-- 안정적인 최신 버전 -->
-    </dependency>
+   <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+       <version>2.3.0</version>
+   </dependency>
 
     <!-- JSON Parsing 라이브러리 -->
     <dependency>
