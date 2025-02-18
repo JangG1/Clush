@@ -1,4 +1,4 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=300&section=header&text=Fastrip&fontSize=90"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=300&section=header&text=CLUSH&fontSize=90"/>
 
 <hr>
 
