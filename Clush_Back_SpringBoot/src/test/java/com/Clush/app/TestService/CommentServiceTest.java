@@ -39,7 +39,13 @@ class CommentRepositoryTest {
     void testSaveComment_Success() {
         // given
     	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
-    	Board mockBoard = new Board(1, "user1", "title1", "content1", comments);  // 수정된 생성자 호출
+    	Board mockBoard = new Board();
+    	mockBoard.setBoardNo(1);
+    	mockBoard.setNickname("testNickname");
+    	mockBoard.setTitle("testTitle");
+    	mockBoard.setContent("testContent");
+    	mockBoard.setComments(new ArrayList<>());
+
         mockBoard.setBoardNo(1);
 
         Comment comment = new Comment();
@@ -88,7 +94,12 @@ class CommentRepositoryTest {
     void testFindCommentsByBoardNo() {
         // given
     	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
-    	Board mockBoard = new Board(1, "user1", "title1", "content1", comments);  // 수정된 생성자 호출
+    	Board mockBoard = new Board();
+    	mockBoard.setBoardNo(1);
+    	mockBoard.setNickname("testNickname");
+    	mockBoard.setTitle("testTitle");
+    	mockBoard.setContent("testContent");
+    	mockBoard.setComments(new ArrayList<>());
         mockBoard.setBoardNo(1);
 
         Comment comment1 = new Comment();
