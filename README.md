@@ -19,8 +19,15 @@
 
 <h3> ✈ Clush Preview ✈ </h3>
 
-Demo : http://clush.shop
+## Project Demo
 
+- Link : http://clush.shop
+
+## API 명세서
+
+API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통해 접속할 수 있습니다.
+
+- Swagger UI: [[Swagger Link](http://clush.shop:7777/clushAPI/swagger-ui/index.html#/)]
 
 <br>
 
@@ -68,6 +75,9 @@ Demo : http://clush.shop
 <img src="https://img.shields.io/badge/Naver News API-03C75A?style=for-the-badge&logo=Naver&logoColor=white">
 <img src="https://img.shields.io/badge/OpenWeather API-03C75A?style=for-the-badge&logo=OpenWeather&logoColor=white">
 <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">
+ <img src="https://img.shields.io/badge/SpringDoc-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black">
+ <img src="https://img.shields.io/badge/junit-25A162?style=for-the-badge&logo=junit5&logoColor=white">
+ <img src="https://img.shields.io/badge/Mockito-FF6A33?style=for-the-badge&logo=Mockito&logoColor=white">
 <img src="https://img.shields.io/badge/Lombok-DC382D?style=for-the-badge&logo=Lombok&logoColor=white">
 <img src="https://img.shields.io/badge/hibernate-59666C?style=for-the-badge&logo=hibernate&logoColor=white">
   <h4>📡 Server</h4>
@@ -167,6 +177,7 @@ Demo : http://clush.shop
 <h3>👉 Description<h3>
 <h4>- JPA(Hibernate), Axios를 이용한 게시판 CRUD 기능</h4>
 <h4>- 해당 게시판에 댓글 달기 기능 추가(OneToMany 참조 관계 형성)</h4>
+<h4>- 댓글 5개 단위의 페이지네이션</h4>
 
 <br>
 <li>Board Insert</li>
