@@ -38,8 +38,8 @@ class CommentRepositoryTest {
     @DisplayName("댓글 저장 테스트 - 정상 케이스")
     void testSaveComment_Success() {
         // given
-    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
-        Board mockBoard = new Board(1, "user1", "title1", "content1", null, comments);
+    	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
+    	Board mockBoard = new Board(1, "user1", "title1", "content1", comments);  // 수정된 생성자 호출
         mockBoard.setBoardNo(1);
 
         Comment comment = new Comment();
@@ -87,8 +87,8 @@ class CommentRepositoryTest {
     @DisplayName("게시글 번호로 댓글 조회 테스트")
     void testFindCommentsByBoardNo() {
         // given
-    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
-        Board mockBoard = new Board(1, "user1", "title1", "content1", null, comments);
+    	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
+    	Board mockBoard = new Board(1, "user1", "title1", "content1", comments);  // 수정된 생성자 호출
         mockBoard.setBoardNo(1);
 
         Comment comment1 = new Comment();

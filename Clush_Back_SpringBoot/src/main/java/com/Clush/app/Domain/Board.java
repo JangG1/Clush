@@ -145,11 +145,12 @@ public class Board {
 	}
 
 	// 수동으로 기본 생성자 추가
-	public Board(int boardNo, String title, String content, String comments) {
-		this.boardNo = boardNo;
-		this.nickname = "defaultNickname"; // 예시로 기본값 할당
-		this.title = "defaultTitle"; // 예시로 기본값 할당
-		this.comments = new ArrayList<>(); // 댓글 리스트 초기화
-
+	public Board(int boardNo, String nickname, String title, String content, List<Comment> comments) {
+	    this.boardNo = boardNo;
+	    this.nickname = nickname;  // nickname을 파라미터로 받도록 수정
+	    this.title = title;
+	    this.content = content;
+	    this.comments = comments != null ? comments : new ArrayList<>(); // null 방지 및 기본값 처리
 	}
+
 }

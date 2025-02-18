@@ -53,8 +53,8 @@ class BoardControllerTest {
 
     @BeforeEach
     void setUp() {
-    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
-        board = new Board(1, "user1", "title1", "content1", null, comments);
+    	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
+    	Board board = new Board(1, "user1", "title1", "content1", comments);  // 수정된 생성자 호출
         boardDTO = new BoardDTO(board);
     }
 
