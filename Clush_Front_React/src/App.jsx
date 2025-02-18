@@ -148,7 +148,7 @@ const styles = {
     flexGrow: 1, // 남은 공간을 차지하도록 설정
   },
   footer: {
-    width: "100%",
+    marginTop: "10%",
     height: "200px",
     backgroundColor: "rgba(62, 58, 122, 0.3)",
     color: "#333",
