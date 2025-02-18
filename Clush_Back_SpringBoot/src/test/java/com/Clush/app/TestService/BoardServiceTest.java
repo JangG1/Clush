@@ -11,6 +11,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.Clush.app.Board.BoardController;
 import com.Clush.app.Domain.Board;
 import com.Clush.app.Domain.BoardDTO;
+import com.Clush.app.Domain.Comment;
 import com.Clush.app.Repository.BoardRepository;
 import com.Clush.app.Service.BoardService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,6 +28,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -51,7 +53,8 @@ class BoardControllerTest {
 
     @BeforeEach
     void setUp() {
-        board = new Board(1, "user1", "title1", "content1", null, null);
+    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
+        board = new Board(1, "user1", "title1", "content1", null, comments);
         boardDTO = new BoardDTO(board);
     }
 

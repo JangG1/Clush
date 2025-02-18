@@ -3,6 +3,7 @@ package com.Clush.app.TestService;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,8 @@ class CommentRepositoryTest {
     @DisplayName("댓글 저장 테스트 - 정상 케이스")
     void testSaveComment_Success() {
         // given
-        Board mockBoard = new Board(0, null, null, null);
+    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
+        Board mockBoard = new Board(1, "user1", "title1", "content1", null, comments);
         mockBoard.setBoardNo(1);
 
         Comment comment = new Comment();
@@ -85,7 +87,8 @@ class CommentRepositoryTest {
     @DisplayName("게시글 번호로 댓글 조회 테스트")
     void testFindCommentsByBoardNo() {
         // given
-        Board mockBoard = new Board(0, null, null, null, null, null);
+    	List<Comment> comments = new ArrayList<>(); // 댓글 리스트 초기화
+        Board mockBoard = new Board(1, "user1", "title1", "content1", null, comments);
         mockBoard.setBoardNo(1);
 
         Comment comment1 = new Comment();
