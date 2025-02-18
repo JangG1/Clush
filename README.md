@@ -19,8 +19,15 @@
 
 <h3> ✈ Clush Preview ✈ </h3>
 
-Demo : http://clush.shop
+## Project Demo
 
+Link : http://clush.shop
+
+## API 명세서
+
+API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통해 접속할 수 있습니다.
+
+- Swagger UI: [[Swagger Link](http://clush.shop:7777/clushAPI/swagger-ui/index.html#/)]
 
 <br>
 
