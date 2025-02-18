@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
@@ -16,6 +17,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+@JsonIgnoreProperties(ignoreUnknown = true) // JSON에 없는 필드는 무시
 @Getter
 @Setter
 @Entity
@@ -57,6 +59,46 @@ public class Board {
         this.title = builder.title;
         this.content = builder.content;
         this.comments = builder.comments != null ? builder.comments : new ArrayList<>();
+    }
+    
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+	
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+	
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+    
+    public int getBoardNo() {
+        return boardNo;
+    }
+
+    public Timestamp getBoard_date() {
+        return board_date;
     }
 
     // 빌더 클래스
