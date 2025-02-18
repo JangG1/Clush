@@ -26,7 +26,6 @@ function BoardContent() {
     axios
       .get(EX_IP + `/clushAPI/getBoard/${boardNo}`) // 해당 게시물의 ID로 API 호출
       .then((response) => {
-        console.log(response.data); // 받은 데이터를 확인
         setBoardDetails(response.data); // 상태에 저장
       })
       .catch((error) => {
@@ -39,7 +38,6 @@ function BoardContent() {
     axios
       .get(EX_IP + `/clushAPI/getComments/${boardNo}`) // 해당 게시물의 댓글 조회
       .then((response) => {
-        console.log(response.data);
         setComments(response.data); // 댓글 목록 상태에 저장
       })
       .catch((error) => {
@@ -75,7 +73,6 @@ function BoardContent() {
         axios
           .delete(EX_IP + `/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
           .then((response) => {
-            console.log(response.data); // 응답 확인
             alert("게시물이 삭제되었습니다.");
             window.location.href = "/Board"; // 삭제 후 게시판 페이지로 이동
           })
@@ -89,7 +86,6 @@ function BoardContent() {
       axios
         .delete(EX_IP + `/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
         .then((response) => {
-          console.log(response.data); // 응답 확인
           alert("게시물이 삭제되었습니다.");
           window.location.href = "/Board"; // 삭제 후 게시판 페이지로 이동
         })
@@ -114,7 +110,6 @@ function BoardContent() {
         content: replyData,
       })
       .then((response) => {
-        console.log(response.data); // 응답 확인
         alert("댓글이 작성되었습니다.");
         setReplyData(""); // 댓글 작성 후 입력 필드 초기화
         setComments([...comments, response.data]); // 새 댓글을 기존 댓글 목록에 추가

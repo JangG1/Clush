@@ -14,7 +14,6 @@ function Board() {
     axios
       .get(EX_IP + "/clushAPI/getAllBoard")
       .then((response) => {
-        console.log(response.data); // 서버에서 받은 응답 처리
         setBoardData(response.data); // 받은 데이터로 상태 업데이트
       })
       .catch((error) => {

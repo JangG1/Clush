@@ -18,7 +18,6 @@ function BoardWrite() {
         content: message3,
       })
       .then((response) => {
-        console.log(response.data);
         alert("게시물이 작성되었습니다.");
         window.location.href = "/Board";
       })

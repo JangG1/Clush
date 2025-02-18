@@ -18,7 +18,6 @@ const TodoApp = () => {
     axios
       .get(EX_IP + `/clushAPI/news/${encodeURIComponent(keyword)}`)
       .then((response) => {
-        console.log("데이터 도착 : ", response.data.data);
         setNews(response.data.data.items);
       })
       .catch((error) => {
@@ -37,10 +36,6 @@ const TodoApp = () => {
       setInput("");
     }
   };
-
-  useEffect(() => {
-    console.log(news);
-  }, [news]);
 
   function cleanChar(title) {
     if (!title) return "";
