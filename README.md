@@ -1,9 +1,8 @@
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=300&section=header&text=Fastrip&fontSize=90"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&width=300&section=header&text=CLUSH&fontSize=90"/>
 
 <hr>
 
-<img width="660" alt="FastripMain" src="https://github.com/user-attachments/assets/522ed3d4-0ed4-41f1-ad7d-b040b35029ec">
-
+<img width="900" alt="FastripMain" src="https://github.com/user-attachments/assets/843da1ea-4dde-4ca1-b9da-627dde82dde3">
 <hr>
 
 <h3> 📰 CI/CD Status 📰 </h3>
@@ -140,29 +139,61 @@ Demo : http://clush.shop
 <hr>
 
 <h3>🔨 Advanced Feature 🔨</h3>
-<h3> 1. Main Page </h3>
- <kbd>
-준비중...
-  </kbd><br>
 
-<h3> 2. To-Do Page </h3>
-   
+<h3> 1. To-Do Page </h3>
+
+<h3>👉 Description <h3>
+<h4>- 할일 추가시 Zustand(상태 관리)를 이용해 일정(데이터) 영구 보존</h4>
+<h4>- Naver New API를 이용해 검색어 기준 뉴스(원본 기사 링크 포함) 정보 제공</h4>
+ 
+<br> 
  <kbd>
-준비중...
+  <img width="820" src="https://github.com/user-attachments/assets/06e189d7-a942-4344-b966-3d71324939e3">
   </kbd><br>
  
-<h3> 3. Calendar Page<h3>
+<h3> 2. Calendar Page<h3>
 
+<h3>👉 Description <h3>
+<h4>- 해당 날짜 일정 추가시 Zustand(상태 관리)를 이용해 일정(데이터) 영구 보존</h4>
+<h4>- OpenWeather API를 이용해 해당 날짜 기준 5일치의 날씨 정보 제공</h4>
+ 
+<br> 
  <kbd>
-준비중...
+  <img width="820" src="https://github.com/user-attachments/assets/25185dcf-35ab-46da-a6c8-f7b580677ddf">
   </kbd><br>
  
-<h3> 4. Board Page<h3>
+<h3> 3. Board Page<h3>
 
+<h3>👉 Description<h3>
+<h4>- JPA(Hibernate), Axios를 이용한 게시판 CRUD 기능</h4>
+<h4>- 해당 게시판에 댓글 달기 기능 추가(OneToMany 참조 관계 형성)</h4>
+
+<br>
+<li>Board Insert</li>
+<br>
  <kbd>
-준비중...
+<img width="820" src="https://github.com/user-attachments/assets/c0d2b300-b0a4-4d7b-a478-da127567dc4a">
   </kbd><br>
-
+<br>
+ <li>Board Put</li>
+ <br>
+ <kbd>
+<img width="820" src="https://github.com/user-attachments/assets/c1509750-c64b-4bde-b106-1aa544e88709">
+  </kbd><br>
+  <br>
+<li>Board Delete</li>
+<br>
+ <kbd>
+<img width="820" src="https://github.com/user-attachments/assets/efd755a6-b4a3-445c-9f53-fda67f76a66d">
+  </kbd><br>
+  <br>
+<li>Comment</li>
+<br>
+ <kbd>
+  준비중
+<img width="820" src="https://github.com/user-attachments/assets/445e8344-21b5-410a-ab37-b303df9b5d19">
+  </kbd><br>
+  <br>
 <hr>
 
 <h3>👷‍♂️ Improvements 👷‍♂️</h3>
