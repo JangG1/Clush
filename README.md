@@ -31,6 +31,11 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 
 <br>
 
+<hr>
+
+<h3> 📅 Period 📅 </h3>
+- 2025/02/08 ~ 2025/02/19 (12Days)
+
 <h3>🎯 Purpose 🎯</h3>
 <li> To-Do: Naver News API를 통한 기사 검색과 할일 추가 기능(상태 관리 라이브러리 Zustand를 이용한 데이터 보존) </li>
 <li> Calendar: Ant-Design의 Calendar를 커스터마이징 및 OpenWeather API를 통한 해당 날짜 기준 5일치의 날씨 정보 가져오기 </li>
@@ -56,7 +61,14 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=Linux&logoColor=black">
 <img src="https://img.shields.io/badge/CentOS 7-262577?style=for-the-badge&logo=CentOS&logoColor=white">
 <img src="https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=Ubuntu&logoColor=white">
+
+ <h4> 🚀 CI/CD 🚀 </h4>
+ <br>
+<div>
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
 </div>
+</div>
+
 
 <br>
 <hr>
@@ -104,11 +116,6 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 
 <br>
 <hr>
-
-<h3> 🚀 CI/CD 🚀 </h3>
-<div>
-<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=GitHub Actions&logoColor=white">
-</div>
 
 <br>
 <hr>
