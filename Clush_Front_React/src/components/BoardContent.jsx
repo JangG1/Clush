@@ -47,19 +47,37 @@ function BoardContent() {
 
   // 게시글 수정 (PUT)
   const handleUpdateMessage = () => {
+    const pw = process.env.REACT_APP_ADMIN_PASSWORD;
     const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
 
-    axios
-      .put(`${EX_IP}/clushAPI/updateBoard/${boardNo}`, {
-        nickname: boardDetails.nickname,
-        title: boardDetails.title,
-        content: updateContent,
-      })
-      .then((response) => {
-        alert("게시물이 수정되었습니다.");
-        window.location.href = "/Board";
-      })
-      .catch((error) => console.error("Error updating message:", error));
+    if (boardDetails.nickname == "관리자") {
+      const password = prompt("비밀번호를 입력하세요:");
+      if (pw == password) {
+        axios
+          .put(`${EX_IP}/clushAPI/updateBoard/${boardNo}`, {
+            nickname: boardDetails.nickname,
+            title: boardDetails.title,
+            content: updateContent,
+          })
+          .then((response) => {
+            alert("게시물이 수정되었습니다.");
+            window.location.href = "/Board";
+          })
+          .catch((error) => console.error("Error updating message:", error));
+      } else {
+        alert("패스워드가 일치하지 않습니다.");
+      }
+    } else if (boardDetails.nickname != "관리자") {
+      axios
+        .delete(EX_IP + `/clushAPI/removeBoard/${boardNo}`) // 게시물 삭제 API 호출 (DELETE 요청)
+        .then((response) => {
+          alert("게시물이 삭제되었습니다.");
+          window.location.href = "/Board"; // 삭제 후 게시판 페이지로 이동
+        })
+        .catch((error) => {
+          console.error("Error deleting board:", error);
+        });
+    }
   };
 
   // 게시물 삭제 함수
