@@ -165,7 +165,7 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
  
 <br> 
  <kbd>
-  <img width="820" src="https://github.com/user-attachments/assets/06e189d7-a942-4344-b966-3d71324939e3">
+  <img width="820" src="https://github.com/user-attachments/assets/5c71c791-f389-48a1-956e-555ac3412f7a">
   </kbd><br>
  
 <h3> 2. Calendar Page<h3>
