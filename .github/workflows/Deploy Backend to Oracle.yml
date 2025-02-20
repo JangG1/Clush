@@ -7,10 +7,21 @@ on:
       - 'README.md'
   workflow_dispatch:
 
-  
-
 jobs:
+  build:
+    runs-on: [self-hosted, linux, x64]  # CentOS 환경에서 실행
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'  # OpenJDK 기반 배포판
+          java-version: '17'
+
   deploy:
+    needs: build  # build 작업이 끝난 후 실행
     runs-on: [self-hosted, linux, x64]
 
     steps:
