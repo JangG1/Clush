@@ -3,6 +3,8 @@ name: Deploy Backend to Oracle VM
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'Clush/Clush_Back_SpringBoot'
     paths-ignore:
       - 'README.md'
   workflow_dispatch:
