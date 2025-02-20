@@ -9,7 +9,7 @@ function BoardWrite() {
   const [message3, setMessage3] = useState("");
 
   const handleSendMessage = () => {
-    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
+    const EX_IP = process.env.REACT_APP_EX_IP || "https://clush.shop:7777";
 
     axios
       .post(EX_IP + `/clushAPI/boardSave`, {

@@ -14,7 +14,7 @@ const TodoApp = () => {
     if (!keyword) return;
 
     setIsLoading(true); // 데이터 요청 시작 시 로딩 상태 활성화
-    const EX_IP = process.env.REACT_APP_EX_IP || "http://clush.shop:7777";
+    const EX_IP = process.env.REACT_APP_EX_IP || "https://clush.shop:7777";
     axios
       .get(EX_IP + `/clushAPI/news/${encodeURIComponent(keyword)}`)
       .then((response) => {
