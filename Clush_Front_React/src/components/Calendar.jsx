@@ -18,6 +18,7 @@ const MyCalendar = () => {
 
   useEffect(() => {
     const EX_IP = process.env.REACT_APP_EX_IP || "https://clush.shop:7777";
+    
     // 날씨 데이터를 API로부터 가져옴
     axios
       .get(`${EX_IP}/clushAPI/weather`) // 요청 URL 수정
