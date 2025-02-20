@@ -7,8 +7,8 @@ concurrency:
 on:
   push:
     branches: [ main ]
-        paths:
-      - 'Clush/Clush_Front_React'
+    paths:
+      - 'Clush/Clush_Front_React/**'
     paths-ignore:
       - 'README.md'
   workflow_dispatch:
