@@ -21,7 +21,7 @@
 
 ## Project Demo
 
-- Link : http://clush.shop
+- Link : https://clush.shop
 
 ## API 명세서
 
@@ -99,6 +99,7 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=Nginx&logoColor=white">
 <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=for-the-badge&logo=Apache Tomcat&logoColor=black">
 <img src="https://img.shields.io/badge/OpenSSL-721412?style=for-the-badge&logo=OpenSSL&logoColor=white">
+<img src="https://img.shields.io/badge/Certbot-0066FF?style=for-the-badge&logo=Certbot&logoColor=white">
 </div>
 
 <br>
