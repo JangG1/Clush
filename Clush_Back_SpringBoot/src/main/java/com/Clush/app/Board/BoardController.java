@@ -30,21 +30,15 @@ import java.io.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 @RestController
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class BoardController {
 	
-	@Autowired
 	private final BoardRepository boardRepository;
-	@Autowired
 	private final BoardService boardService;
 
     // 클래스 레벨에서 Logger 초기화
     private static final Logger log = LoggerFactory.getLogger(BoardController.class);
     
-    public BoardController(BoardRepository boardRepository, BoardService boardService) {
-        this.boardRepository = boardRepository;
-        this.boardService = boardService;
-    }
 	
  // 모든 게시판 조회
     @Operation(summary = "Get all Board Items")

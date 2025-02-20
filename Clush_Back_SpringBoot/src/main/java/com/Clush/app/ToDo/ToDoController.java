@@ -10,14 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.Clush.app.Repository.BoardRepository;
+import com.Clush.app.Service.BoardService;
+
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 
 @RestController
+@RequiredArgsConstructor
 public class ToDoController {
     
-	@Autowired
-    private NaverNewsAPI naverNewsAPI;
+	private final NaverNewsAPI naverNewsAPI;
     
     // 클라이언트에서 'keyword' 파라미터로 검색어를 받아서 뉴스 정보 제공
     @Operation(summary = "Get News Info By Naver News API")
