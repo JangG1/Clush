@@ -87,7 +87,7 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 <img src="https://img.shields.io/badge/Naver News API-03C75A?style=for-the-badge&logo=Naver&logoColor=white">
 <img src="https://img.shields.io/badge/OpenWeather API-03C75A?style=for-the-badge&logo=OpenWeather&logoColor=white">
 <img src="https://img.shields.io/badge/SpringSecurity-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white">
- <img src="https://img.shields.io/badge/SpringDoc-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black">
+ <img src="https://img.shields.io/badge/SpringDoc Swagger-85EA2D?style=for-the-badge&logo=Swagger&logoColor=black">
  <img src="https://img.shields.io/badge/junit-25A162?style=for-the-badge&logo=junit5&logoColor=white">
  <img src="https://img.shields.io/badge/Mockito-FF6A33?style=for-the-badge&logo=Mockito&logoColor=white">
 <img src="https://img.shields.io/badge/Lombok-DC382D?style=for-the-badge&logo=Lombok&logoColor=white">
