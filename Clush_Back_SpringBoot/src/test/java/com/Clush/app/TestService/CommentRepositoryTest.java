@@ -3,14 +3,12 @@ package com.Clush.app.TestService;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 import com.Clush.app.Domain.Board;
 import com.Clush.app.Domain.Comment;
-import com.Clush.app.Domain.CommentDTO;
 import com.Clush.app.Repository.BoardRepository;
 import com.Clush.app.Repository.CommentRepository;
 
@@ -20,8 +18,12 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class CommentRepositoryTest {
+
+    private static final Logger log = LoggerFactory.getLogger(CommentRepositoryTest.class);
 
     @Mock
     private BoardRepository boardRepository;
@@ -29,25 +31,26 @@ class CommentRepositoryTest {
     @Mock
     private CommentRepository commentRepository;
 
+    private Board mockBoard;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
+        
+        log.info("🔧 테스트 초기화 중...");
+        mockBoard = new Board();
+        mockBoard.setBoardNo(1);
+        mockBoard.setNickname("testNickname");
+        mockBoard.setTitle("testTitle");
+        mockBoard.setContent("testContent");
+        mockBoard.setComments(Arrays.asList());
     }
 
     @Test
     @DisplayName("댓글 저장 테스트 - 정상 케이스")
     void testSaveComment_Success() {
-        // given
-    	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
-    	Board mockBoard = new Board();
-    	mockBoard.setBoardNo(1);
-    	mockBoard.setNickname("testNickname");
-    	mockBoard.setTitle("testTitle");
-    	mockBoard.setContent("testContent");
-    	mockBoard.setComments(new ArrayList<>());
-
-        mockBoard.setBoardNo(1);
-
+        log.info("🚀 댓글 저장 테스트 시작");
+        
         Comment comment = new Comment();
         comment.setNickname("testUser");
         comment.setContent("This is a test comment");
@@ -56,17 +59,18 @@ class CommentRepositoryTest {
         when(boardRepository.findById(1)).thenReturn(Optional.of(mockBoard));
         when(commentRepository.save(any(Comment.class))).thenReturn(comment);
 
-        // when
+        log.info("🔍 게시판 ID 1 조회 요청");
         Optional<Board> boardOpt = boardRepository.findById(1);
         assertTrue(boardOpt.isPresent(), "게시글이 존재해야 합니다.");
-
+        
+        log.info("💾 댓글 저장 요청: {}", comment);
         Comment savedComment = commentRepository.save(comment);
 
-        // then
         assertNotNull(savedComment);
         assertEquals("testUser", savedComment.getNickname());
         assertEquals("This is a test comment", savedComment.getContent());
 
+        log.info("✅ 댓글 저장 테스트 성공");
         verify(boardRepository, times(1)).findById(1);
         verify(commentRepository, times(1)).save(any(Comment.class));
     }
@@ -74,17 +78,15 @@ class CommentRepositoryTest {
     @Test
     @DisplayName("댓글 저장 테스트 - 게시글이 존재하지 않는 경우")
     void testSaveComment_BoardNotFound() {
-        // given
-        Comment comment = new Comment();
-        comment.setNickname("testUser");
-        comment.setContent("This is a test comment");
-
+        log.info("🚀 댓글 저장 테스트 (게시글 없음) 시작");
+        
         when(boardRepository.findById(999)).thenReturn(Optional.empty());
 
-        // when & then
+        log.info("🔍 존재하지 않는 게시글 ID 999 조회 요청");
         Optional<Board> boardOpt = boardRepository.findById(999);
         assertFalse(boardOpt.isPresent(), "게시글이 존재하지 않아야 합니다.");
 
+        log.warn("❌ 게시글이 존재하지 않아 댓글 저장 안 됨");
         verify(boardRepository, times(1)).findById(999);
         verify(commentRepository, never()).save(any(Comment.class));
     }
@@ -92,16 +94,8 @@ class CommentRepositoryTest {
     @Test
     @DisplayName("게시글 번호로 댓글 조회 테스트")
     void testFindCommentsByBoardNo() {
-        // given
-    	List<Comment> comments = new ArrayList<>();  // 댓글 리스트 초기화
-    	Board mockBoard = new Board();
-    	mockBoard.setBoardNo(1);
-    	mockBoard.setNickname("testNickname");
-    	mockBoard.setTitle("testTitle");
-    	mockBoard.setContent("testContent");
-    	mockBoard.setComments(new ArrayList<>());
-        mockBoard.setBoardNo(1);
-
+        log.info("🚀 게시글 번호로 댓글 조회 테스트 시작");
+        
         Comment comment1 = new Comment();
         comment1.setCommentNo(1);
         comment1.setNickname("user1");
@@ -115,14 +109,14 @@ class CommentRepositoryTest {
         List<Comment> mockComments = Arrays.asList(comment1, comment2);
         when(commentRepository.findByBoardBoardNo(1)).thenReturn(mockComments);
 
-        // when
+        log.info("🔍 게시글 ID 1의 댓글 조회 요청");
         List<Comment> retrievedComments = commentRepository.findByBoardBoardNo(1);
 
-        // then
         assertEquals(2, retrievedComments.size());
         assertEquals("user1", retrievedComments.get(0).getNickname());
         assertEquals("user2", retrievedComments.get(1).getNickname());
 
+        log.info("✅ 게시글 ID 1의 댓글 조회 성공: {}개 댓글", retrievedComments.size());
         verify(commentRepository, times(1)).findByBoardBoardNo(1);
     }
 }
