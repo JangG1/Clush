@@ -22,7 +22,7 @@ public class BoardDTO {
         this.nickname = board.getNickname();
         this.title = board.getTitle();
         this.content = board.getContent();
-        this.boardDate = board.getBoard_date();
+        this.boardDate = board.getBoardDate();
         // 댓글 리스트를 CommentDTO로 변환하여 설정
         this.comments = board.getComments().stream()
                               .map(comment -> new CommentDTO(comment))

@@ -6,17 +6,18 @@ import java.util.List;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-//파이프라인에서 어노테이션 관련 에러가 많이 발생(추후 디버깅 예정, 우선은 대부분 수동으로 구현)
 @Entity
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -41,5 +42,4 @@ public class Comment {
     @JoinColumn(name = "board_no", nullable = false)
     @JsonBackReference // 순환 참조 방지
     private Board board;
-
 }
