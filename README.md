@@ -119,41 +119,7 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
 </div>
 
 <br>
-<hr>
 
-<h3>📈 Architecture 📉</h3>
-
-### 1. To-Do
-
- <kbd>
-준비중...
-  </kbd><br>
-
-### 2. Calendar
-
- <kbd>
-준비중...
-  </kbd><br>
-
-### 3. Board ###
-
- <kbd>
-준비중...
-  </kbd><br>
-
-### 4. CI/CD ###
-
- <kbd>
-준비중...
-  </kbd><br>
-
-### 5. ERD
-
- <kbd>
-준비중...
-  </kbd><br>
-
-<br>
 <hr>
 
 <h3>🔨 Advanced Feature 🔨</h3>
