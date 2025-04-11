@@ -181,8 +181,4 @@ API 문서는 Swagger를 통해 확인할 수 있습니다. 아래 링크를 통
   <br>
 <hr>
 
-<h3>👷‍♂️ Improvements 👷‍♂️</h3>
-<li> UI/UX detail modification according to the resolution </li>
-<li> Code Refactoring [Method Check, Debug Check] </li>
-<li> JavaScript -> TypeScript </li>
 <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=footer&fontSize=90" />
