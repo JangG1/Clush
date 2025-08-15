@@ -5,25 +5,10 @@ on:
     branches: [ main ]
     paths:
       - 'Clush_Back_SpringBoot/**'
-      - '!README.md'
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: [self-hosted, linux, x64]  # CentOS 환경에서 실행
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      # self-hosted 러너라면 JDK가 이미 설치되어 있을 가능성이 높음
-      # 필요하다면 JAVA_HOME만 설정
-      - name: Set JAVA_HOME
-        run: |
-          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk" >> $GITHUB_ENV
-          echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
-
   deploy:
-    needs: build
     runs-on: [self-hosted, linux, x64]
 
     steps:
