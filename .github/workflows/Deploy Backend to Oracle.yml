@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'Clush_Back_SpringBoot/**'
+      - '!README.md'
   workflow_dispatch:
 
 jobs:
@@ -14,28 +15,29 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'  # OpenJDK 기반 배포판
-          java-version: '17'
+      # self-hosted 러너라면 JDK가 이미 설치되어 있을 가능성이 높음
+      # 필요하다면 JAVA_HOME만 설정
+      - name: Set JAVA_HOME
+        run: |
+          echo "JAVA_HOME=/usr/lib/jvm/java-17-openjdk" >> $GITHUB_ENV
+          echo "PATH=$JAVA_HOME/bin:$PATH" >> $GITHUB_ENV
 
   deploy:
-    needs: build  # build 작업이 끝난 후 실행
+    needs: build
     runs-on: [self-hosted, linux, x64]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3  # 저장소의 파일을 CI 환경으로 체크아웃.
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Set up SSH
-      uses: webfactory/ssh-agent@v0.5.3
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}  # GitHub Secrets에서 SSH 개인 키를 사용하여 Oracle VM에 접근.
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Deploy Backend to Oracle VM
-      run: |
-        ssh -v -o StrictHostKeyChecking=no dio@192.168.56.1 'bash -s' << 'EOF'          
-               export SUDO_PASSWORD="${{ secrets.SUDO_PASSWORD }}"
-         /clush/deploy/deploy_back.sh  # 빌드 및 배포 스크립트를 실행.
-        EOF
+      - name: Deploy Backend to Oracle VM
+        run: |
+          ssh -v -o StrictHostKeyChecking=no dio@192.168.56.1 'bash -s' << 'EOF'
+            export SUDO_PASSWORD="${{ secrets.SUDO_PASSWORD }}"
+            /clush/deploy/deploy_back.sh
+          EOF
