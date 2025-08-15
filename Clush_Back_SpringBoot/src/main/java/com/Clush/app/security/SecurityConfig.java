@@ -45,7 +45,7 @@ public class SecurityConfig {
 		configuration.addAllowedHeader("*");
 		configuration.setAllowCredentials(true); // 인증 관련 요청 허용
 	    configuration.addExposedHeader("Authorization");
-	      
+	    
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
