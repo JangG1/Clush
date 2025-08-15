@@ -40,7 +40,7 @@ public class SecurityConfig {
 	public UrlBasedCorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		//configuration.addAllowedOriginPattern("*");
-		configuration.setAllowedOriginPatterns(Arrays.asList("https://clush.shop", "https://clush.shop:7777"));
+		configuration.setAllowedOriginPatterns(Arrays.asList("https://clush.shop", "https://clush.shop:7777", "https://mindsync.site", "https://mindsync.site:7777"));
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedHeader("*");
 		configuration.setAllowCredentials(true); // 인증 관련 요청 허용
