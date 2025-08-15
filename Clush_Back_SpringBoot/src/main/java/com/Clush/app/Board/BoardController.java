@@ -32,7 +32,7 @@ public class BoardController {
     @GetMapping("/getAllBoard")
     public List<BoardDTO> getAllBoard() {
         List<Board> boards = boardRepository.findAll();
-        log.info("📌 모든 게시판 가져오기: {}", boards);
+        log.info("📌 모든 게시판 가져오기: {}", boards);                     
         return boards.stream().map(BoardDTO::new).collect(Collectors.toList());
     }
 

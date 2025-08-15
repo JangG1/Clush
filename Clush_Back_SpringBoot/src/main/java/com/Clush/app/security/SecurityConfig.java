@@ -39,16 +39,18 @@ public class SecurityConfig {
 	@Bean
 	public UrlBasedCorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedOriginPattern("*");
+		//configuration.addAllowedOriginPattern("*");
+		configuration.setAllowedOriginPatterns(Arrays.asList("https://clush.shop", "https://clush.shop:7777"));
 		configuration.addAllowedMethod("*");
 		configuration.addAllowedHeader("*");
-		configuration.setAllowCredentials(true);
-
+		configuration.setAllowCredentials(true); // 인증 관련 요청 허용
+	    configuration.addExposedHeader("Authorization");
+	      
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);
 		return source;
 	}
-
+    
 	@Bean
 	public AuthenticationEntryPoint unauthorizedEntryPoint() {
 		return (request, response, authException) -> {
